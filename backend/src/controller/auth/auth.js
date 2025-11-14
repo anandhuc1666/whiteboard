@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 export const register = async (req, res) => {
   const { name, lastName, age, number, email, password } = req.body;
   try {
-    if (!name || !lastName || !age || !number || !email || !password) {
+    if (!name|| !age || !number || !email || !password) {
       return res.status(404).json({ message: "please fill the form" });
     }
     const user = await User.findOne({ email });

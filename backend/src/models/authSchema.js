@@ -4,6 +4,12 @@ const UserSchema = new mongoose.Schema(
         name:{
             type:String
         },
+        lastName:{
+            type:String
+        },
+        age:{
+            type:Number
+        },
         number:{
             type:Number
         },
@@ -17,5 +23,5 @@ const UserSchema = new mongoose.Schema(
         }
     }
 )
-const User = mongoose.model("Users",UserSchema)
+const User = mongoose.model("auth",UserSchema)
 export default User
