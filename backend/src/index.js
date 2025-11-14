@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
 import dotenv from "dotenv"
+import route from "./routes/userRoute/userRoute.js"
 
 const app = express()
 app.use(express.json())
@@ -11,6 +12,8 @@ dotenv.config()
 mongoose.connect(process.env.MONGO_DB)
 .then(()=>console.log('mongoDB conected'))
 .catch((err)=>console.log('mongoDB not connected'))
+
+app.use("/user",route)
 
 const PORT = process.env.PORT || 3001
 
