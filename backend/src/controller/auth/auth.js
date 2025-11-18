@@ -1,6 +1,7 @@
 import User from "../../models/authSchema.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import {sendOtp} from "../../utils/sendEmail.js"
 
 //new user register form
 export const register = async (req, res) => {
