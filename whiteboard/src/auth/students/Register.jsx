@@ -37,7 +37,7 @@ function Register() {
       const response = await axios.post(
         "http://localhost:5803/user/register",
         register,
-        { timeout: 10000 } 
+        { timeout: 10000 }
       );
 
       console.log("Server response:", response.data);
@@ -177,7 +177,9 @@ function Register() {
 
         <div className="w-full h-auto py-3 flex justify-evenly flex-col px-18 ">
           <div className="">
-            <p className="font-IstokWeb text-3xl text-white">I have an account </p>
+            <p className="font-IstokWeb text-3xl text-white">
+              I have an account{" "}
+            </p>
           </div>
           <div className="w-full h-auto py-3 flex justify-between">
             <button

@@ -45,7 +45,7 @@ export const generateOtp = async (req, res) => {
     user.otpExpires = Date.now() + 10 * 60 * 1000;
     await user.save();
     await sendOtp(email, otp);
-    res.status(200).json({ message: "OTP send to email" });
+    res.status(200).json({ status: "success",message: "OTP send to email" });
   } catch (error) {
     console.log(error);
    return res.status(500).json({ message: "internel server issue" });
