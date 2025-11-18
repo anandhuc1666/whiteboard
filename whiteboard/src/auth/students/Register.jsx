@@ -3,8 +3,13 @@ import registerImg from "../../assets/registerImg.svg";
 import axios from "axios";
 import logo from "../../assets/Whiteboard.png";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import dotenv from  "dotenv"
 
 function Register() {
+  dotenv.config()
+  const navigate = useNavigate()
   const [register, setRegister] = useState({
     name: "",
     lastName: "",
@@ -34,8 +39,7 @@ function Register() {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:5803/user/register",
+      const response = await axios.post(`${import.meta.env.BACKEND_URL}/register`,
         register,
         { timeout: 10000 }
       );
@@ -57,6 +61,7 @@ function Register() {
         email: "",
         password: "",
       });
+      navigate('/verify-OTP')
     } catch (error) {
       console.error("Registration error:", error);
 
@@ -182,12 +187,14 @@ function Register() {
             </p>
           </div>
           <div className="w-full h-auto py-3 flex justify-between">
-            <button
-              className="w-35 h-[60px] border-2 rounded-full border-white transition duration-700 ease-in-out text-[18px] hover:bg-[#5F48D5] hover:text-[#fff] text-[#5F48D5]"
-              // implement login navigation if needed
-            >
-              login
-            </button>
+            <Link to={'/Login'}>
+              <button
+                className="w-35 h-[60px] border-2 rounded-full border-white transition duration-700 ease-in-out text-[18px] hover:bg-[#5F48D5] hover:text-[#fff] text-[#5F48D5]"
+                // implement login navigation if needed
+              >
+                login
+              </button>
+            </Link>
             <button
               onClick={handleSend}
               disabled={isLoading}
