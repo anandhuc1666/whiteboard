@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import dotenv from "dotenv";
 
 function OtpFind() {
-  dotenv.config();
+
   const [emailsend, setEmail] = useState({ email: "" });
   const [sending, setSending] = useState(false);
   const [verifying, setVerifying] = useState(false);
@@ -16,9 +15,9 @@ function OtpFind() {
   const OTP_LENGTH = 6;
   const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(""));
   const inputsRef = useRef([]);
-
-  const generateOtpUrl = `${import.meta.env.BACKEND_URL}/generateOtp`;
-  const verifyOtpUrl = `${import.meta.env.BACKEND_URL}/verifyOtp`;
+  const BACKEND_URL =`http://localhost:5803/user`
+  const generateOtpUrl = `${BACKEND_URL}/generateOtp`;
+  const verifyOtpUrl = `${BACKEND_URL}/verifyOtp`;
 
   // email input handler
   const handleChange = (e) => {
