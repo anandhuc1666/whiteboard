@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../assets/Whiteboard.png";
 import studentslogin from "../../assets/studentslogin.svg";
+import teacherlogin from  "../../assets/teacherlogin.svg"
+import { Link } from "react-router-dom";
 
 function Login() {
   const [shift, setShift] = useState(false);
@@ -37,32 +39,62 @@ function Login() {
               <div className="w-[60px] h-[60px] rounded-full opacity-70 ml-[-50px] bg-white"></div>
             </div>
           </div>
-          <div className="w-full h-[50vh] bg-amber-300 px-10 gap-10 flex flex-col justify-center">
-            <div className="w-full flex justify-end">
-              <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
-            </div>
-            <input
-              type="text"
-              placeholder="Your email"
-              className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-            />
-            <input
-              type="text"
-              placeholder="Your email"
-              className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-            />
-            <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
-              Login
-            </button>
-          </div>
-          <div className="w-full bg-amber-300 h-[200px]">
-            <div className="flex items-center gap-5 ml-15 mt-5">
-              <p className="font-medium text-white">don’t have a account ?</p>
-              <button className="w-[150px] h-[60px] rounded-full text-[#5F48D5] font-light inset-shadow-xs inset-shadow-indigo-500/50 text-shadow-lg/20 text-[25px] hover:bg-[#D9D9D9] hover:text-white shadow-lg bg-white">
-                register
+
+          {/* find the shift is true or false then change its teachers or students */}
+          {/* first teacher login page */}
+         {shift === false ?(          <div className="">
+            <div className="w-full h-[50vh]  px-10 gap-10 flex flex-col justify-center">
+              <div className="w-full flex justify-end">
+                <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
+              </div>
+              <input
+                type="text"
+                placeholder="Your email"
+                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+              />
+              <input
+                type="text"
+                placeholder="Your email"
+                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+              />
+              <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
+                Login
               </button>
             </div>
-          </div>
+           
+          </div>):  
+            //  then students login page register/login   
+                <div className="">
+            <div className="w-full h-[50vh] px-10 gap-10 flex flex-col justify-center">
+              <div className="w-full flex justify-end">
+                <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
+              </div>
+              <input
+                type="text"
+                placeholder="Your email"
+                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+              />
+              <input
+                type="text"
+                placeholder="Your email"
+                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+              />
+              <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
+                Login
+              </button>
+            </div>
+            <div className="w-full h-[150px]">
+              <div className="flex items-center gap-5 ml-15 mt-5">
+                <p className="font-medium text-white">don’t have a account ?</p>
+                <Link to={'/register'}>
+                  <button className="w-[150px] h-[60px] rounded-full text-[#5F48D5] font-light inset-shadow-xs inset-shadow-indigo-500/50 text-shadow-lg/20 text-[25px] hover:bg-[#D9D9D9] hover:text-white shadow-lg bg-white">
+                  register
+                </button>
+                </Link>
+
+              </div>
+            </div>
+          </div>}
         </div>
         {/* blue section design on the inside the section */}
         <div className="w-[900px] h-[90vh] bg-[#5F48D5] rounded-4xl ">
@@ -78,7 +110,8 @@ function Login() {
                   <p className="text-white font-light text-6xl">Welcome to </p>
                 </div>
                 <div className="w-full flex justify-center items-center">
-                  <p className="text-white font-light text-6xl">student's</p>
+                  {shift === false ? <p className="text-white font-light text-6xl">teachers</p> : <p className="text-white font-light text-6xl">student's</p>}
+                  
                 </div>
                 <div className="w-full flex items-center justify-end">
                   <p className="text-white font-light text-6xl">portal</p>
@@ -90,7 +123,8 @@ function Login() {
             </div>
           </div>
           <div className="flex items-center justify-center w-full">
-            <img src={studentslogin} alt="" className="w-[500px]" />
+            {shift === false ? <img src={teacherlogin} alt="" className="w-[350px] ml-[-100px]"/> :<img src={studentslogin} alt="" className="w-[500px]" /> }
+   
           </div>
         </div>
       </div>

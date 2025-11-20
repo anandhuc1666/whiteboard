@@ -4,16 +4,19 @@ import Register from './auth/students/Register'
 import { Route, Routes, } from 'react-router-dom'
 import Notapage from './auth/students/Notapage'
 import OtpFind from './auth/students/OtpFind'
+import Nav from './Home/Nav/Nav'
 
 
 function App() {
   return (
     <div>
       <Routes>
-       <Route path='/' element={<Register/>}/>
+       <Route path='/register' element={<Register/>}/>
        <Route path='/verify-OTP' element={<OtpFind/>}/>
        <Route path='/Login' element={<Login/>} />
        <Route path='*' element={<Notapage/>}/>
+       {/* //test section// */}
+       <Route path='/nav' element={<Nav/>}/>
       </Routes>
     </div>
   )
