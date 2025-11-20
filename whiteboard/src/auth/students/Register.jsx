@@ -135,7 +135,7 @@ function Register() {
           <div className="flex justify-end flex-col">
             <p className="font-IstokWeb text-[1.5em] text-white">Number:</p>
             <input
-              type="tel"
+              type="number"
               className="w-[700px] h-[70px] px-3 text-2xl font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
               onChange={handleChange}
               value={register.number}

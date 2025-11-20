@@ -1,15 +1,54 @@
 import React, { useState } from "react";
 import logo from "../../assets/Whiteboard.png";
 import studentslogin from "../../assets/studentslogin.svg";
-import teacherlogin from  "../../assets/teacherlogin.svg"
-import { Link } from "react-router-dom";
+import teacherlogin from "../../assets/teacherlogin.svg";
+import { Link,useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function Login() {
   const [shift, setShift] = useState(false);
-
+  const [studentLogin, setStudentLogin] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
   const toggleShift = () => {
     setShift(!shift);
   };
+
+  const handleStudents = (e) => {
+    e.preventDefault();
+    setStudentLogin({ ...studentLogin, [e.target.name]: e.target.value });
+  };
+  const handleSend = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:5803/user/user-login`,
+        studentLogin
+      );
+      console.log("Server response:", response.data);
+
+      await Swal.fire({
+        title: "Success",
+        text: response.data?.message || "User created",
+        icon: "success",
+      });
+      navigate('/')
+    } catch (error) {
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data ||
+        error?.message ||
+        "Something went wrong";
+
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+      });
+    }
+  };
+
+  //http://localhost:5803/user/user-login
 
   return (
     <div className="w-full h-[100vh] bg-white flex items-center justify-center">
@@ -42,59 +81,71 @@ function Login() {
 
           {/* find the shift is true or false then change its teachers or students */}
           {/* first teacher login page */}
-         {shift === false ?(          <div className="">
-            <div className="w-full h-[50vh]  px-10 gap-10 flex flex-col justify-center">
-              <div className="w-full flex justify-end">
-                <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
-              </div>
-              <input
-                type="text"
-                placeholder="Your email"
-                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-              />
-              <input
-                type="text"
-                placeholder="Your email"
-                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-              />
-              <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
-                Login
-              </button>
-            </div>
-           
-          </div>):  
-            //  then students login page register/login   
-                <div className="">
-            <div className="w-full h-[50vh] px-10 gap-10 flex flex-col justify-center">
-              <div className="w-full flex justify-end">
-                <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
-              </div>
-              <input
-                type="text"
-                placeholder="Your email"
-                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-              />
-              <input
-                type="text"
-                placeholder="Your email"
-                className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
-              />
-              <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
-                Login
-              </button>
-            </div>
-            <div className="w-full h-[150px]">
-              <div className="flex items-center gap-5 ml-15 mt-5">
-                <p className="font-medium text-white">don’t have a account ?</p>
-                <Link to={'/register'}>
-                  <button className="w-[150px] h-[60px] rounded-full text-[#5F48D5] font-light inset-shadow-xs inset-shadow-indigo-500/50 text-shadow-lg/20 text-[25px] hover:bg-[#D9D9D9] hover:text-white shadow-lg bg-white">
-                  register
+          {shift === false ? (
+            <div className="">
+              <div className="w-full h-[50vh]  px-10 gap-10 flex flex-col justify-center">
+                <div className="w-full flex justify-end">
+                  <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
+                </div>
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                />
+                <input
+                  type="password"
+                  placeholder="Your password"
+                  className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                />
+                <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
+                  Login
                 </button>
-                </Link>
-
               </div>
             </div>
-          </div>}
+          ) : (
+            //  then students login page register/login
+            <div className="">
+              <div className="w-full h-[50vh] px-10 gap-10 flex flex-col justify-center">
+                <div className="w-full flex justify-end">
+                  <div className="w-[40px] h-[40px] rounded-full bg-white"></div>
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  value={studentLogin.email}
+                  placeholder="Your email"
+                  className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                  onChange={handleStudents}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  value={studentLogin.password}
+                  placeholder="Your password"
+                  className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                  onChange={handleStudents}
+                />
+                <button
+                  className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]"
+                  onClick={handleSend}
+                >
+                  Login
+                </button>
+              </div>
+              <div className="w-full h-[150px]">
+                <div className="flex items-center gap-5 ml-15 mt-5">
+                  <p className="font-medium text-white">
+                    don’t have a account ?
+                  </p>
+                  <Link to={"/register"}>
+                    <button className="w-[150px] h-[60px] rounded-full text-[#5F48D5] font-light inset-shadow-xs inset-shadow-indigo-500/50 text-shadow-lg/20 text-[25px] hover:bg-[#D9D9D9] hover:text-white shadow-lg bg-white">
+                      register
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         {/* blue section design on the inside the section */}
         <div className="w-[900px] h-[90vh] bg-[#5F48D5] rounded-4xl ">
@@ -110,8 +161,11 @@ function Login() {
                   <p className="text-white font-light text-6xl">Welcome to </p>
                 </div>
                 <div className="w-full flex justify-center items-center">
-                  {shift === false ? <p className="text-white font-light text-6xl">teachers</p> : <p className="text-white font-light text-6xl">student's</p>}
-                  
+                  {shift === false ? (
+                    <p className="text-white font-light text-6xl">teachers</p>
+                  ) : (
+                    <p className="text-white font-light text-6xl">student's</p>
+                  )}
                 </div>
                 <div className="w-full flex items-center justify-end">
                   <p className="text-white font-light text-6xl">portal</p>
@@ -123,8 +177,15 @@ function Login() {
             </div>
           </div>
           <div className="flex items-center justify-center w-full">
-            {shift === false ? <img src={teacherlogin} alt="" className="w-[350px] ml-[-100px]"/> :<img src={studentslogin} alt="" className="w-[500px]" /> }
-   
+            {shift === false ? (
+              <img
+                src={teacherlogin}
+                alt=""
+                className="w-[350px] ml-[-100px]"
+              />
+            ) : (
+              <img src={studentslogin} alt="" className="w-[500px]" />
+            )}
           </div>
         </div>
       </div>

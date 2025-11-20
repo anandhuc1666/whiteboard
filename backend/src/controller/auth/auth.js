@@ -2,6 +2,7 @@ import User from "../../models/authSchema.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import { sendOtp } from "../../utils/sendEmail.js";
+import { getUserToken } from "../../utils/jwt.js";
 
 //new user register form
 export const register = async (req, res) => {
@@ -101,8 +102,16 @@ export const login = async (req, res) => {
     if (!findpass) {
       return res.status(400).json({ message: "your password incurrect" });
     }
-    await user.save();
-    return res.status(200).json({ message: "user login successfully" });
+    const token = getUserToken(user._id);
+
+    res.cookie("userToken", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      
+    });
+    return res.status(200).json({ message: "user login successfully"});
+   
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });

@@ -5,12 +5,14 @@ import { Route, Routes, } from 'react-router-dom'
 import Notapage from './auth/students/Notapage'
 import OtpFind from './auth/students/OtpFind'
 import Nav from './Home/Nav/Nav'
+import Home from './Home/Home'
 
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route path='/' element={<Home/>}/>
        <Route path='/register' element={<Register/>}/>
        <Route path='/verify-OTP' element={<OtpFind/>}/>
        <Route path='/Login' element={<Login/>} />
