@@ -1,10 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import "tailwindcss";
 
 @theme{
     --font-Irish: "Irish Grover", system-ui;
     --font-IstokWeb: "Istok Web", sans-serif;
+    --font-Indie-Flower: "Indie Flower", cursive;
     --font-Inria-Serif: "Inria Serif", serif;
+    
+}
+
+@theme {
+  --animate-wiggle: wiggle 3s ease-in-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+}
+@keyframes up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* move up */
+  }
+}
+
+@utility animate-up-down {
+  animation: up-down 4s ease-in-out infinite;
 }
