@@ -8,7 +8,7 @@ import Footer from './Footer/Footer'
 function Home() {
   return (
     <div className=''>
-        <div className="w-full flex justify-center mt-10"><Nav/></div>
+        
         <div className=""><Body/></div>
         <div className=""><Lerning/></div>
         <div className=""><Review/></div>

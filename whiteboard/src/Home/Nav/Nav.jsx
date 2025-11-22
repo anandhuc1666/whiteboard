@@ -1,9 +1,8 @@
 import logo from "../../assets/Whiteboard.png";
 import { IoMdSearch } from "react-icons/io";
-
+import { Link } from "react-router-dom";
 
 function Nav() {
-
   return (
     <div className="w-[85%] h-[120px] bg-[#F8F8F8] rounded-2xl flex items-center justify-between">
       <div className="px-4 mt-0 py-0 items-center flex">
@@ -12,8 +11,12 @@ function Nav() {
       </div>
       <div className="flex">
         <ul className="flex gap-15 font-medium font-Inria-Serif text-2xl">
-           <li className="hover:text-[#5F48D5] hover:font-bold ">Home</li>
-          <li className="hover:text-[#5F48D5] hover:font-bold">About</li>
+          <Link to={'/'}>
+            <li className="hover:text-[#5F48D5] hover:font-bold ">Home</li>
+          </Link>
+          <Link to={"/About"}>
+            <li className="hover:text-[#5F48D5] hover:font-bold">About</li>
+          </Link>
           <li className="hover:text-[#5F48D5] hover:font-bold">Course </li>
           <li className="hover:text-[#5F48D5] hover:font-bold">Blogs</li>
         </ul>
