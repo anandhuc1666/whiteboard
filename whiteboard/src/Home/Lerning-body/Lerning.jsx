@@ -12,7 +12,7 @@ function Lerning() {
   return (
     <div className="w-full h-[120vh]">
       <div className="w-full h-[35vh] bg-[#FAFAFA] flex items-center justify-evenly">
-        <div className="w-[250px] h-[30vh] bg-[#FFB6B6] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700 hover:border-1 hover:border-[#5F48D5]">
+        <div className="w-[250px] h-[30vh] bg-[#FFB6B6] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700">
           <div className="flex w-full justify-center mt-7">
             <TbTools className="text-6xl text-[#FAFAFA] animate-wiggle" />
           </div>
@@ -27,7 +27,7 @@ function Lerning() {
             </p>
           </div>
         </div>
-        <div className="w-[250px] h-[30vh] bg-[#C0F3B8] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700 hover:border-1 hover:border-[#5F48D5]">
+        <div className="w-[250px] h-[30vh] bg-[#C0F3B8] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700">
           <div className="flex w-full justify-center mt-7">
             <FaUserGraduate className="text-6xl text-[#5F48D5] animate-wiggle" />
           </div>
@@ -42,7 +42,7 @@ function Lerning() {
             </p>
           </div>
         </div>
-        <div className="w-[250px] h-[30vh] bg-[#B6ACEC] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700 hover:border-1 hover:border-[#5F48D5]">
+        <div className="w-[250px] h-[30vh] bg-[#B6ACEC] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700">
           <div className="flex w-full justify-center mt-7">
             <FaPeopleGroup className="text-6xl text-[#5F48D5] animate-wiggle" />
           </div>
@@ -57,7 +57,7 @@ function Lerning() {
             </p>
           </div>
         </div>
-        <div className="w-[250px] h-[30vh] bg-[#FFB6B6] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700 hover:border-1 hover:border-[#5F48D5]">
+        <div className="w-[250px] h-[30vh] bg-[#FFB6B6] rounded-2xl flex flex-col gap-5 hover:shadow-lg/50 hover:shadow-[#5F48D5]  hover:duration-700">
           <div className="flex w-full justify-center mt-7">
             <IoAnalyticsSharp className="text-6xl text-[#FAFAFA] animate-wiggle" />
           </div>
