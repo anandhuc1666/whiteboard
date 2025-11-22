@@ -1,15 +1,8 @@
-import React, { useState } from "react";
 import logo from "../../assets/Whiteboard.png";
 import { IoMdSearch } from "react-icons/io";
 
 
 function Nav() {
-
-const[showLines,setShowLine]=useState(false)
-
-const showLine=()=>{
-    setShowLine(true)
-}
 
   return (
     <div className="w-[85%] h-[120px] bg-[#F8F8F8] rounded-2xl flex items-center justify-between">
@@ -19,12 +12,7 @@ const showLine=()=>{
       </div>
       <div className="flex">
         <ul className="flex gap-15 font-medium font-Inria-Serif text-2xl">
-            <div className="">
-            <li className="hover:text-[#5F48D5] hover:font-bold " onMouseOver={showLine} onMouseLeave={()=>setShowLine(false)}>Home</li>
-            {showLines===true? <div className="w-full h-1 bg-[#5F48D5] hover:transition hover:duration-700 hover:ease-in-out  rounded-full block"></div>:<div className="w-full h-1 rounded-full hidden"></div>}
-            
-            </div>
-          
+           <li className="hover:text-[#5F48D5] hover:font-bold ">Home</li>
           <li className="hover:text-[#5F48D5] hover:font-bold">About</li>
           <li className="hover:text-[#5F48D5] hover:font-bold">Course </li>
           <li className="hover:text-[#5F48D5] hover:font-bold">Blogs</li>

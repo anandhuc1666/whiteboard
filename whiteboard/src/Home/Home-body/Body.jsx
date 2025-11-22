@@ -28,7 +28,7 @@ function Body() {
           </p>
         </div>
         <div className="w-full flex justify-end mt-[-50px]">
-          <SiBookstack className="text-7xl text-black opacity-18" />
+          <SiBookstack className="text-7xl text-black opacity-18 animate-wiggle"/>
         </div>
         <div className="font-Indie-Flower text-3xl px-52 leading-13 text-[#F5F5F5]">
           <p className=" text-black opacity-50">
@@ -106,7 +106,7 @@ function Body() {
               className="w-[170px] h-[170px] rounded-full bg-cover bg-center shadow-lg/50"
               style={{ backgroundImage: `url(${study_group})` }}
             ></div>
-            <div className="w-[150px] h-[80px] shadow-lg/20 rounded-3xl gap-2 flex bg-[#FAFAFA]">
+            <div className="w-[150px] h-[80px] shadow-lg/20 rounded-3xl gap-2 flex bg-[#FAFAFA] inset-shadow-sm">
               <div className="w-[30px] h-[30px] bg-[#5F48D5] rounded-full mt-2 ml-2 flex items-center justify-center">
                 <GiPlainArrow className=" rotate-230 text-white" />
               </div>

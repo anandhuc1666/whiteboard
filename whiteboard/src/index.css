@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import "tailwindcss";
 
@@ -9,7 +10,7 @@
     --font-IstokWeb: "Istok Web", sans-serif;
     --font-Indie-Flower: "Indie Flower", cursive;
     --font-Inria-Serif: "Inria Serif", serif;
-    
+    --font-Inter: "Inter", sans-serif;
 }
 
 @theme {
