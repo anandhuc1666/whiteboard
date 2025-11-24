@@ -6,6 +6,7 @@ import OtpFind from "./auth/students/OtpFind";
 import Nav from "./Home/Nav/Nav";
 import Home from "./Home/Home";
 import Aboute from "./Home/Aboute/Aboute";
+import StudentsCouse from "./Course/students/StudentsCouse";
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/About" element={<Aboute />} />
         <Route path="*" element={<Notapage />} />
+        <Route path="/StudentsCourse" element={<StudentsCouse/>}/>
       </Routes>
     </div>
   );

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 function Login() {
   const [shift, setShift] = useState(false);
   const [studentLogin, setStudentLogin] = useState({ email: "", password: "" });
+  const [staff, setStaff]=useState({email:"",password:""})
   const navigate = useNavigate();
   const toggleShift = () => {
     setShift(!shift);
@@ -48,7 +49,39 @@ function Login() {
     }
   };
 
+
+const handlestaff=(e)=>{
+  e.preventDefault();
+  setStaff({...staff,[e.target.name]:e.target.value})
+}
+const handleSendstaff= async()=>{
+  try {
+    const responce = await axios.post(`http://localhost:5803/user/staff_login`,staff)
+    console.log("Server response:", responce.data);
+    await Swal.fire({
+        title: "Success",
+        text: responce.data?.message || "User created",
+        icon: "success",
+      });
+      navigate('/staff')
+  } catch (error) {
+    const message =
+        error?.responce?.data?.message ||
+        error?.responce?.data ||
+        error?.message ||
+        "Something went wrong";
+
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+      });
+    console.log(error)
+  }
+}
+
   //http://localhost:5803/user/user-login
+  //http://localhost:5803/user/staff_login
 
   return (
     <div className="w-full h-[100vh] bg-white flex items-center justify-center">
@@ -68,7 +101,7 @@ function Login() {
                   onClick={toggleShift}
                 >
                   <div className="w-[100px] h-[53px] bg-white rounded-full shadow-xl/20 flex items-center justify-center font-medium mt-[-1px]">
-                    {shift === false ? "teacher’s " : "student"}
+                    {shift !== false ? "teacher’s " : "student"}
                   </div>
                 </div>
               </div>
@@ -81,7 +114,7 @@ function Login() {
 
           {/* find the shift is true or false then change its teachers or students */}
           {/* first teacher login page */}
-          {shift === false ? (
+          {shift !== false ? (
             <div className="">
               <div className="w-full h-[50vh]  px-10 gap-10 flex flex-col justify-center">
                 <div className="w-full flex justify-end">
@@ -91,13 +124,19 @@ function Login() {
                   type="email"
                   placeholder="Your email"
                   className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                  name="email"
+                  value={staff.email}
+                  onChange={handlestaff}
                 />
                 <input
                   type="password"
                   placeholder="Your password"
                   className="w-full h-[80px] border-3 border-[#5F48D5] rounded-full pl-6 bg-white font-IstokWeb text-2xl"
+                  name="password"
+                  value={staff.password}
+                  onChange={handlestaff}
                 />
-                <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]">
+                <button className="w-full h-[80px] border-3 border-black text-white rounded-full bg-[#5F48D5] font-IstokWeb text-3xl text-shadow-lg/50 hover:bg-[#5442af]" onClick={handleSendstaff}>
                   Login
                 </button>
               </div>
@@ -161,7 +200,7 @@ function Login() {
                   <p className="text-white font-light text-6xl">Welcome to </p>
                 </div>
                 <div className="w-full flex justify-center items-center">
-                  {shift === false ? (
+                  {shift !== false ? (
                     <p className="text-white font-light text-6xl">teachers</p>
                   ) : (
                     <p className="text-white font-light text-6xl">student's</p>
@@ -177,7 +216,7 @@ function Login() {
             </div>
           </div>
           <div className="flex items-center justify-center w-full">
-            {shift === false ? (
+            {shift !== false ? (
               <img
                 src={teacherlogin}
                 alt=""

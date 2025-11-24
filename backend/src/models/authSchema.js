@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,6 +21,10 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  role:{
+   type:String,
+   default:"student"
   },
   otp: {
     type: String,

@@ -86,7 +86,7 @@ export const verifyOtp = async (req, res) => {
 
 //find the use and jwt genarate
 
-export const login = async (req, res) => {
+export const student_login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: "please try to login" });
@@ -98,9 +98,14 @@ export const login = async (req, res) => {
         .status(404)
         .json({ message: "sorry no user is exsisted in this email" });
     }
-    const findpass = await bcrypt.compare(password,user.password);
+    const findpass = await bcrypt.compare(password, user.password);
     if (!findpass) {
       return res.status(400).json({ message: "your password incurrect" });
+    }
+    if (user.role !== "student") {
+      return res
+        .status(404)
+        .json({ message: "sorry no user is exsisted in this email" });
     }
     const token = getUserToken(user._id);
 
@@ -108,10 +113,43 @@ export const login = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
-      
     });
-    return res.status(200).json({ message: "user login successfully"});
-   
+    return res.status(200).json({ message: "user login successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internel server issue" });
+  }
+};
+
+export const staff_login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: "please try to login" });
+  }
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "sorry no user is exsisted in this email" });
+    }
+    const findpass = await bcrypt.compare(password, user.password);
+    if (!findpass) {
+      return res.status(400).json({ message: "your password incurrect" });
+    }
+    if (user.role !== "staff") {
+      return res
+        .status(404)
+        .json({ message: "sorry no user is exsisted in this email" });
+    }
+    const token = getUserToken(user._id);
+
+    res.cookie("userToken", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    return res.status(200).json({ message: "user login successfully" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });

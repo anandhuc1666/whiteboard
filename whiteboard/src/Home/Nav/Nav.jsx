@@ -17,8 +17,8 @@ function Nav() {
           <Link to={"/About"}>
             <li className="hover:text-[#5F48D5] hover:font-bold">About</li>
           </Link>
-          <li className="hover:text-[#5F48D5] hover:font-bold">Course </li>
-          <li className="hover:text-[#5F48D5] hover:font-bold">Blogs</li>
+          <Link to={"/StudentsCourse"}><li className="hover:text-[#5F48D5] hover:font-bold">Course </li></Link>
+             <li className="hover:text-[#5F48D5] hover:font-bold">Blogs</li>
         </ul>
       </div>
       <div className=" flex items-center gap-10 px-3">
@@ -31,9 +31,11 @@ function Nav() {
           <IoMdSearch className="text-5xl text-[#CAD3F5]" />
         </div>
         <div className="w-[120px] h-[50px] bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center px-0 shadow-lg/20">
-          <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center">
-            <p className="text-white">Login</p>
-          </div>
+          <Link to={'/login'}>
+           <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center">
+             <p className="text-white">Login</p>
+           </div>
+          </Link>
         </div>
       </div>
     </div>
