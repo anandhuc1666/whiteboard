@@ -10,12 +10,14 @@ import StudentsCouse from "./Course/students/StudentsCouse";
 
 function App() {
   const location = useLocation();
-  const hideNavRoutes = ["/login", "/register", "/Login", "/Register"];
-  const hideNav = hideNavRoutes.includes(location.pathname);
+
+  const showNavRoutes = ["/", "/about", "/studentscourse"];
+  const currentPath = location.pathname.toLowerCase();
+  const showNav = showNavRoutes.includes(currentPath);
 
   return (
     <div>
-      {!hideNav && (
+      {showNav && (
         <div className="w-full flex justify-center mt-10">
           <Nav />
         </div>
@@ -24,12 +26,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/verify-OTP" element={<OtpFind />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/nav" element={<Nav />} />
-        <Route path="/About" element={<Aboute />} />
-        <Route path="*" element={<Notapage />} />
-        <Route path="/StudentsCourse" element={<StudentsCouse/>}/>
+        <Route path="/verify-otp" element={<OtpFind />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<Aboute />} />
+        <Route path="/studentscourse" element={<StudentsCouse />} />
+        <Route path="/*" element={<Notapage />} />
       </Routes>
     </div>
   );
