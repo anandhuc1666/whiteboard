@@ -67,13 +67,12 @@ export const verifyOtp = async (req, res) => {
         .status(400)
         .json({ status: "fail", message: "user email is invalide" });
     }
-    if (user.otp != otp || user.otpExpires < Date.now()) {
+    if (user.otp != otp) {
       return res
         .status(400)
         .json({ status: "fail", message: "user OTP invalide " });
     }
     user.otp = null;
-    user.otpExpires = null;
     await user.save();
     return res
       .status(200)

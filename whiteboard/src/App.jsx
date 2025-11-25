@@ -7,11 +7,13 @@ import Nav from "./Home/Nav/Nav";
 import Home from "./Home/Home";
 import Aboute from "./Home/Aboute/Aboute";
 import StudentsCouse from "./Course/students/StudentsCouse";
+import StudentsCourse from "./Course/courseVdo/StudentsCourse";
+
 
 function App() {
   const location = useLocation();
 
-  const showNavRoutes = ["/", "/about", "/studentscourse"];
+  const showNavRoutes = ["/", "/about", "/studentscourse","/course"];
   const currentPath = location.pathname.toLowerCase();
   const showNav = showNavRoutes.includes(currentPath);
 
@@ -30,7 +32,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<Aboute />} />
         <Route path="/studentscourse" element={<StudentsCouse />} />
+         <Route path="/course" element={<StudentsCourse/>}/>
         <Route path="/*" element={<Notapage />} />
+       
       </Routes>
     </div>
   );

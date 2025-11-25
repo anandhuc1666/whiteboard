@@ -1,11 +1,17 @@
 import React from "react";
 import demoIMG from "../.../../../assets/picture/demoIMG.png";
+import { RiFlutterFill } from "react-icons/ri";
+import { SiPython } from "react-icons/si";
+import { FaJava } from "react-icons/fa";  
 import { BsPen } from "react-icons/bs";
 import { SiBookstack } from "react-icons/si";
 import { IoVideocamOutline } from "react-icons/io5";
 import mini_sm1 from "../../assets/one.jpg";
 import mini_sm2 from "../../assets/two.jpg";
 import mini_sm3 from "../../assets/three.jpg";
+import { BiLogoGoLang } from "react-icons/bi";
+import { DiJavascript } from "react-icons/di";
+import { Link } from "react-router-dom";
 function StudentsCouse() {
   return (
     <div className="w-full h-[100vh] mt-10">
@@ -70,13 +76,14 @@ function StudentsCouse() {
         <div className="w-[1000px] h-[70vh] flex items-center justify-center">
             <div className="w-[800px] h-[50vh] flex flex-col gap-10">
                 <div className="flex gap-20">
-                   <div className="w-[180px] h-[200px] bg-[#C0F3B8] rounded-2xl shadow-lg/20"></div>
-                   <div className="w-[180px] h-[200px] bg-[#EAF3FB] rounded-2xl shadow-lg/20"></div>
-                   <div className="w-[180px] h-[200px] bg-[#FFEBBC] rounded-2xl shadow-lg/20"></div>
+                  <Link to={'/course'}><div className="w-[180px] h-[200px] bg-[#C0F3B8] rounded-2xl shadow-lg/20 flex items-center justify-center"><BiLogoGoLang className="text-[#00ACD7] text-9xl drop-shadow-lg/50 "/></div></Link>
+                   
+                   <div className="w-[180px] h-[200px] bg-[#EAF3FB] rounded-2xl shadow-lg/20 flex items-center justify-center"><RiFlutterFill className="text-[#00569E] text-8xl drop-shadow-lg/50"/></div>
+                   <div className="w-[180px] h-[200px] bg-[#FFEBBC] rounded-2xl shadow-lg/20 flex items-center justify-center"><FaJava  className="text-[#E76F00] text-8xl drop-shadow-lg/50"/></div>
                 </div>
                 <div className="flex gap-20">
-                   <div className="w-[180px] h-[200px] bg-[#CFC6FF] rounded-2xl shadow-lg/20"></div>
-                   <div className="w-[180px] h-[200px] bg-[#F8F8F8] rounded-2xl shadow-lg/20"></div>
+                   <div className="w-[180px] h-[200px] bg-[#CFC6FF] rounded-2xl shadow-lg/20 flex items-center justify-center"><DiJavascript className="text-[#FFE873] text-8xl drop-shadow-lg/50"/></div>
+                   <div className="w-[180px] h-[200px] bg-[#F8F8F8] rounded-2xl shadow-lg/20 flex items-center justify-center"><SiPython className="text-[#FFE873] text-8xl drop-shadow-lg/50"/></div>
                 </div>
             </div>
         </div>

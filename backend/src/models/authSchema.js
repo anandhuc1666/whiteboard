@@ -28,10 +28,7 @@ const UserSchema = new mongoose.Schema({
   },
   otp: {
     type: String,
-  },
-  otpExpires: {
-    type: Date,
-  },
+  }
 });
 const User = mongoose.model("auth", UserSchema);
 export default User;
