@@ -3,12 +3,16 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import { Link} from "react-router-dom";
 
 function StudentAcc() {
   const [user, setUser] = useState(null);
   try {
     useEffect(() => {
       const token = localStorage.getItem("token");
+      if(!token){
+        return setUser(null)
+      }
       axios
         .get(`http://localhost:5803/students/student_profile`, {
           headers: {
@@ -21,8 +25,15 @@ function StudentAcc() {
     }, []);
   } catch (error) {
     console.log(error);
+
+    setUser(null)
   }
-  console.log(user?.name);
+  let userNm = user?.name
+
+  const handleOut = () => {
+    localStorage.removeItem("token");
+    setUser(null);          
+  };
   return (
     <div className="w-full h-auto flex justify-between px-[145px] py-[30px]">
       <div className="w-[26%] h-[100vh] bg-[#5F48D5] rounded-2xl">
@@ -44,8 +55,8 @@ function StudentAcc() {
                 <FaStar className="mt-56 text-[#FFFF8D]" />
               </div>
               <div className=" w-[320px] h-[100px] flex items-center pl-10">
-                <button className="w-[130px] h-12 bg-white rounded-full text-[#5F48D5] font-Inter text-2xl font-bold">
-                  logout
+                <button className="w-[130px] h-12 bg-white rounded-full text-[#5F48D5] font-Inter text-2xl font-bold" onClick={user ? handleOut : undefined}>
+                    {user ? "logout" : <Link to="/login">login</Link>}
                 </button>
               </div>
             </div>
@@ -59,9 +70,9 @@ function StudentAcc() {
           {/* user id section email and number + extra data they needed its add on there */}
           <div className="w-full h-[520px] p-5">
             <div className="w-full h-[480px] bg-white rounded-2xl">
-              <div className=" w-full font-Inter p-5 text-[18px] flex flex-col gap-5">
-                <p>Email: arun@gmail.com</p>
-                <p>Phone: 1234560789</p>
+              <div className=" w-full font-Inter p-5 text-[15px] flex flex-col gap-5">
+                <p>Email: {user?user.email:''}</p>
+                <p>Phone: {user?user.number:''}</p>
               </div>
               <div className="w-full h-0.5 bg-[#5F48D5]"></div>
             </div>
@@ -74,7 +85,7 @@ function StudentAcc() {
         <div className="w-full h-[350px] bg-[#5F48D5] rounded-2xl flex items-end py-10">
           {/* user name welcome section */}
           <div className="w-full text-5xl text-white font-Inter font-semibold h-30 px-20 flex flex-col justify-between">
-            <p>Welcome back, Arun k</p>
+            <p>Welcome back, { userNm}{user?user.lastName:''}</p>
             <p className="font-medium text-2xl">
               Always stay updated in your students portel
             </p>
