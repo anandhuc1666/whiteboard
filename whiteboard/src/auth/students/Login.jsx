@@ -26,7 +26,7 @@ function Login() {
         `http://localhost:5803/user/user-login`,
         studentLogin
       );
-      console.log("Server response:", response.data);
+      localStorage.setItem("token", response.data.token);
 
       await Swal.fire({
         title: "Success",

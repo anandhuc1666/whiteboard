@@ -106,14 +106,15 @@ export const student_login = async (req, res) => {
         .status(404)
         .json({ message: "sorry no user is exsisted in this email" });
     }
-    const token = getUserToken(user._id);
+const token = getUserToken(user._id);
 
     res.cookie("userToken", token, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
     });
-    return res.status(200).json({ message: "user login successfully" });
+
+    return res.status(200).json({ message: "user login successfully",token,user });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });
@@ -141,14 +142,14 @@ export const staff_login = async (req, res) => {
         .status(404)
         .json({ message: "sorry no user is exsisted in this email" });
     }
-    const token = getUserToken(user._id);
+    const token = getUserToken (user._id);
 
     res.cookie("userToken", token, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
     });
-    return res.status(200).json({ message: "user login successfully" });
+    return res.status(200).json({ message: "user login successfully",token });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });

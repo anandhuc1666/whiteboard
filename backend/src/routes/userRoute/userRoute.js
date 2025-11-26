@@ -1,5 +1,6 @@
 import express, { Router } from "express"
 import { register,generateOtp, verifyOtp,student_login, staff_login } from "../../controller/auth/auth.js"
+import verifyUser from "../../middleware/token.js"
 
 const route = Router()
 route.post("/register",register)

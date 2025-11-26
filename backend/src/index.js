@@ -3,17 +3,23 @@ import mongoose from "mongoose"
 import cors from "cors"
 import dotenv from "dotenv"
 import route from "./routes/userRoute/userRoute.js"
+import cookieParser from "cookie-parser"
+import studentRoute from "./routes/users/studentRoute.js"
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true               
+}))
 dotenv.config()
-
+app.use(cookieParser()) 
 mongoose.connect(process.env.MONGO_DB)
 .then(()=>console.log('mongoDB conected'))
 .catch((err)=>console.log('mongoDB not connected'))
 
 app.use("/user",route)
+app.use("/students",studentRoute)
 
 const PORT = process.env.PORT || 3001
 
