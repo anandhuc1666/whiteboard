@@ -1,6 +1,6 @@
 import Login from "./auth/students/Login";
 import Register from "./auth/students/Register";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Notapage from "./auth/students/Notapage";
 import OtpFind from "./auth/students/OtpFind";
 import Nav from "./Home/Nav/Nav";
@@ -11,12 +11,17 @@ import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
 import NewPass from "./auth/students/NewPass";
 
-
-
 function App() {
   const location = useLocation();
+  const token = localStorage.getItem("token");
 
-  const showNavRoutes = ["/", "/about", "/studentscourse","/course","/account"];
+  const showNavRoutes = [
+    "/",
+    "/about",
+    "/studentscourse",
+    "/course",
+    "/account",
+  ];
   const currentPath = location.pathname.toLowerCase();
   const showNav = showNavRoutes.includes(currentPath);
 
@@ -30,16 +35,32 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" /> : <Register />}
+        />
         <Route path="/verify-otp" element={<OtpFind />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
+
         <Route path="/about" element={<Aboute />} />
-        <Route path="/studentscourse" element={<StudentsCouse />} />
-         <Route path="/course" element={<StudentsCourse/>}/>
-         <Route path="/account" element={<StudentAcc/>}/>
-         <Route path="/verify-password" element={<NewPass/>}/>
+
+        <Route
+          path="/studentscourse"
+          element={token ? <StudentsCouse /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/course"
+          element={token ? <StudentsCourse /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/account"
+          element={token ? <StudentAcc /> : <Navigate to="/login" />}
+        />
+        <Route path="/verify-password" element={<NewPass />} />
         <Route path="/*" element={<Notapage />} />
-       
       </Routes>
     </div>
   );

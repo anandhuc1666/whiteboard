@@ -1,6 +1,6 @@
 import User from "../../models/authSchema.js";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
+import crypto, { hash } from "crypto";
 import { sendOtp } from "../../utils/sendEmail.js";
 import { getUserToken } from "../../utils/jwt.js";
 
@@ -82,6 +82,30 @@ export const verifyOtp = async (req, res) => {
     return res.status(500).json({ message: "internel server issue" });
   }
 };
+
+export const genaratePass = async(req,res)=>{
+  const {email,password,conformPassword} = req.body;
+  try {
+    if(!email||!password||!conformPassword){
+      return res.status(404).json({message:"please ender the details"})
+    }
+    const user =  await User.findOne({email})
+    const passkey = await bcrypt.compare(password,user.password)
+    if(passkey){
+      return res.status(400).json({message:"it's your old password"})
+    }
+    if(password !== conformPassword){
+      return res.status(400).json({message:"your password is missmach try again"})
+    }
+    const changepass = await bcrypt.hash(password,8)
+   user.password = changepass
+   res.status(200).json({message:"your password is updated successfully"})
+    await user.save()
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({message:"server not responce"})
+  }
+}
 
 //find the use and jwt genarate
 
