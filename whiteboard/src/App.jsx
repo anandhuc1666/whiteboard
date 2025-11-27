@@ -9,6 +9,7 @@ import Aboute from "./Home/Aboute/Aboute";
 import StudentsCouse from "./Course/students/StudentsCouse";
 import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
+import NewPass from "./auth/students/NewPass";
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/studentscourse" element={<StudentsCouse />} />
          <Route path="/course" element={<StudentsCourse/>}/>
          <Route path="/account" element={<StudentAcc/>}/>
+         <Route path="/verify-password" element={<NewPass/>}/>
         <Route path="/*" element={<Notapage />} />
        
       </Routes>

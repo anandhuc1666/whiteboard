@@ -1,9 +1,12 @@
 import axios from "axios";
-import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import demo3dpic from "../../assets/picture/demo3dpic.png"
 import { Link} from "react-router-dom";
+import mini_sm1 from "../../assets/one.jpg"
+import mini_sm2 from "../../assets/two.jpg"
+import mini_sm3 from "../../assets/three.jpg"
 
 function StudentAcc() {
   const [user, setUser] = useState(null);
@@ -90,6 +93,7 @@ function StudentAcc() {
               Always stay updated in your students portel
             </p>
           </div>
+          <img src={demo3dpic} alt="" className="w-[350px] drop-shadow-lg/50 drop-shadow-white"/>
         </div>
         <div className="w-full h-[550px] flex justify-between">
           <div className="w-[350px] h-550px">
@@ -111,11 +115,16 @@ function StudentAcc() {
               </div>
             </div>
           </div>
-          <div className="w-[500px] h-[550px] bg-[#5F48D5] rounded-2xl flex flex-col gap-2 py-3">
+          {user?(          <div className="w-[500px] h-[550px] bg-[#5F48D5] rounded-2xl flex flex-col gap-2 py-3">
             <div className="w-full h-[100px] pl-2.5 text-3xl flex items-center font-medium font-Inter text-white">
               <p>course instructor</p>
             </div>
-            <div className="w-full h-[100px] bg-white"></div>
+            {/* course asign instructors list */}
+            <div className="w-full h-[100px] bg-white flex items-center gap-2">
+                <div className="w-[70px] h-[70px] border-2 border-[#5F48D5] rounded-full bg-center bg-cover"  style={{ backgroundImage: `url(${mini_sm3})` }}></div>
+                <div className="w-[70px] h-[70px] border-2 border-[#5F48D5] rounded-full bg-center bg-cover"  style={{ backgroundImage: `url(${mini_sm2})` }}></div>
+                <div className="w-[70px] h-[70px] border-2 border-[#5F48D5] rounded-full bg-center bg-cover"  style={{ backgroundImage: `url(${mini_sm1})` }}></div>
+            </div>
             <div className="w-full h-[250px] flex flex-col gap-5 p-5">
               <p className="text-2xl font-semibold text-white">Daily notice </p>
               <div className="w-full h-auto text-[12px] px-2 py-3 bg-white rounded-2xl">
@@ -126,7 +135,7 @@ function StudentAcc() {
                 </p>
               </div>
             </div>
-          </div>
+          </div>):''}
         </div>
       </div>
     </div>

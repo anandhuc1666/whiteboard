@@ -154,7 +154,7 @@ function OtpFind() {
     inputsRef.current[0]?.focus();
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-[#5F48D5] p-6">
       <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-2">
           Verify Your Email
