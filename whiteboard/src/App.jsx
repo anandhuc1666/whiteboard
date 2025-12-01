@@ -10,6 +10,7 @@ import StudentsCouse from "./Course/students/StudentsCouse";
 import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
 import NewPass from "./auth/students/NewPass";
+import Chats from "./Course/courseVdo/studentsChat/Chats";
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
           element={token ? <StudentAcc /> : <Navigate to="/login" />}
         />
         <Route path="/verify-password" element={<NewPass />} />
+        <Route path="/chats" element={<Chats/>}/>
         <Route path="/*" element={<Notapage />} />
       </Routes>
     </div>

@@ -1,12 +1,13 @@
+import { useState } from "react";
 import logo from "../../assets/Whiteboard.png";
 import { IoMdSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
+import { useEffect } from "react";
+
 
 function Nav() {
-  const [userID, setUserID] = useState(null);
+  const [userID, setUserID] = useState(false)
 
   useEffect(() => {
     try {
@@ -54,7 +55,7 @@ function Nav() {
           />
           <IoMdSearch className="text-5xl text-[#CAD3F5]" />
         </div>
-        {!userID ? (
+        {!userID? (
           <div className="w-[130px] h-[50px] bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center px-0 shadow-lg/20">
             <Link to={"/login"}>
               <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center">
@@ -65,7 +66,7 @@ function Nav() {
         ) : (
           <Link to={'/account'}>
             <div className="w-[130px] h-[50px] pl-0.5 bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center justify-between px-0 shadow-lg/20">
-              <p className="text-black">{userID?.name || "User"}</p>
+              <p className="text-[#5F48D5]">{userID?.name || "User"}</p>
               <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center"></div>
             </div>
           </Link>
