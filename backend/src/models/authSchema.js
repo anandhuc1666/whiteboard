@@ -25,6 +25,14 @@ const UserSchema = new mongoose.Schema({
    type:String,
    default:"student"
   },
+  payment:{
+    type:Boolean,
+    default:false
+  },
+  course:{
+    type:String,
+    default:"null"
+  },
   otp: {
     type: String,
   }

@@ -11,6 +11,7 @@ import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
 import NewPass from "./auth/students/NewPass";
 import Chats from "./Course/courseVdo/studentsChat/Chats";
+import Payment from "./Home/payment/Payment";
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
     "/studentscourse",
     "/course",
     "/account",
+    "/chats"
   ];
   const currentPath = location.pathname.toLowerCase();
   const showNav = showNavRoutes.includes(currentPath);
@@ -62,6 +64,7 @@ function App() {
         />
         <Route path="/verify-password" element={<NewPass />} />
         <Route path="/chats" element={<Chats/>}/>
+        <Route path="/payment" element={<Payment/>}/>
         <Route path="/*" element={<Notapage />} />
       </Routes>
     </div>
