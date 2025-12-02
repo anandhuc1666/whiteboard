@@ -24,6 +24,9 @@ const UserSchema = new mongoose.Schema({
   role:{
    type:String,
    default:"student"
+  },profileImage: {
+    type: String,
+    default: "" 
   },
   payment:{
     type:Boolean,

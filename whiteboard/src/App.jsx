@@ -45,7 +45,7 @@ function App() {
         <Route path="/verify-otp" element={<OtpFind />} />
         <Route
           path="/login"
-          element={token ? <Navigate to="/" /> : <Login />}
+          element={ <Login />}
         />
 
         <Route path="/about" element={<Aboute />} />

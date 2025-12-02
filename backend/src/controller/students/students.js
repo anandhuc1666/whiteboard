@@ -3,7 +3,6 @@ import User from "../../models/authSchema.js";
 export const student = async (req, res) => {
   try {
     const userId =  req.user.id;
-    console.log(userId);
     if(!userId){
         return res.status(400).json({message:"token user not found"})
     }

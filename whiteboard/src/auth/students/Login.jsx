@@ -79,7 +79,9 @@ const handleSendstaff= async()=>{
     console.log(error)
   }
 }
-
+const clickMove =()=>{
+  navigate('/verify-password')
+}
   //http://localhost:5803/user/user-login
   //http://localhost:5803/user/staff_login
 
@@ -171,7 +173,7 @@ const handleSendstaff= async()=>{
                   Login
                 </button>
               </div>
-              <div className="w-full h-[150px]">
+              <div className="w-full h-[150px] flex">
                 <div className="flex items-center gap-5 ml-15 mt-5">
                   <p className="font-medium text-white">
                     don’t have a account ?
@@ -182,6 +184,7 @@ const handleSendstaff= async()=>{
                     </button>
                   </Link>
                 </div>
+                <div className="text-[#eee] text-[18px] hover:text-[red]" onClick={clickMove}><p>forget password</p></div>
               </div>
             </div>
           )}

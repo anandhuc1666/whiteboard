@@ -7,10 +7,11 @@ import { getUserToken } from "../../utils/jwt.js";
 //new user register form
 export const register = async (req, res) => {
   const { name, lastName, age, number, email, password } = req.body;
+      const profileImage = req.file ? req.file.path : "";
   try {
-    if (!name || !age || !number || !email || !password) {
-      return res.status(404).json({ message: "please fill the form" });
-    }
+    // if (!name || !age || !number || !email || !password) {
+    //   return res.status(404).json({ message: "please fill the form" });
+    // }
     const user = await User.findOne({ email });
     if (user) {
       return res
@@ -25,6 +26,7 @@ export const register = async (req, res) => {
       number: number,
       email: email,
       password: solid,
+      profileImage: profileImage,
     });
     res.status(200).json({ message: "user is created" });
     await users.save();
