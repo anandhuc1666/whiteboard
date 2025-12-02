@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import mini_sm1 from "../../assets/one.jpg";
 import mini_sm2 from "../../assets/two.jpg";
 import mini_sm3 from "../../assets/three.jpg";
+import { MdEdit } from "react-icons/md";
 
 function StudentAcc() {
   const [user, setUser] = useState(null);
@@ -58,7 +59,7 @@ function StudentAcc() {
             <div className="flex flex-col">
               <div className="w-[320px] h-[250px] flex items-center pl-5">
                 {/* profile image section */}
-                <FaStar className="mt-32 text-[#FDD835]" />
+                <FaStar className="mt-32 text-3xl text-[#FDD835] " />
                 <div
                   className={`border-5 rounded-full ${
                     !token || user?.payment === false
@@ -66,7 +67,18 @@ function StudentAcc() {
                       : `border-[#A57C00]`
                   } `}
                 >
-                  <div className="w-[150px] h-[150px] bg-white rounded-full"></div>
+                  <div className="w-[150px] h-[150px] bg-white rounded-full overflow-hidden"><MdEdit className="text-white absolute ml-25 text-4xl mt-28"/>
+                    {user?.profileImage ? (
+                      <img
+                        src={user.profileImage}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      // Your default placeholder
+                      <div className="w-full h-full bg-gray-200"></div>
+                    )}
+                  </div>
                 </div>
                 <FaStar className="mt-56 text-[#FFFF8D]" />
               </div>
@@ -98,10 +110,10 @@ function StudentAcc() {
               {user && user.payment === false && (
                 <div className="flex w-full justify-center py-5">
                   <div
-                    className="w-[350px] h-[80px] bg-[green] hover:bg-[lightgreen] hover:text-[green] rounded-full flex items-center justify-center text-4xl font-semibold text-white"
+                    className="w-[350px] h-[80px] bg-[green] hover:bg-[lightgreen] hover:text-[green] rounded-full flex items-center justify-center text-2xl font-semibold text-white"
                     onClick={handleClick}
                   >
-                    <p>Try to Pay</p>
+                    <p>Unlock Premium Course</p>
                   </div>
                 </div>
               )}

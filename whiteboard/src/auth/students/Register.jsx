@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-const [file, setFile] = useState(null);
-  const REGISTER_URL = `http://localhost:5803/user`
+  const [file, setFile] = useState(null);
+  const REGISTER_URL = `http://localhost:5803/user`;
   const navigate = useNavigate();
   const [register, setRegister] = useState({
     name: "",
@@ -18,7 +18,7 @@ const [file, setFile] = useState(null);
     email: "",
     password: "",
   });
-  
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -37,22 +37,21 @@ const [file, setFile] = useState(null);
       });
     }
     const formData = new FormData();
-  formData.append("name", register.name);
-  formData.append("lastName", register.lastName);
-  formData.append("number", register.number);
-  formData.append("age", register.age);
-  formData.append("email", register.email);
-  formData.append("password", register.password);
-  if (file) {
-    formData.append("profileImage", file); // Key must match backend: upload.single("profileImage")
-  }
+    formData.append("name", register.name);
+    formData.append("lastName", register.lastName);
+    formData.append("number", register.number);
+    formData.append("age", register.age);
+    formData.append("email", register.email);
+    formData.append("password", register.password);
+    if (file) {
+      formData.append("profileImage", file); // Key must match backend: upload.single("profileImage")
+    }
     setIsLoading(true);
     try {
-      const response = await axios.post(
-      `${REGISTER_URL}/register`,
-        formData,
-        {headers: { "Content-Type": "multipart/form-data" }, timeout: 10000 }
-      );
+      const response = await axios.post(`${REGISTER_URL}/register`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        timeout: 10000,
+      });
 
       console.log("Server response:", response.data);
 
@@ -90,9 +89,9 @@ const [file, setFile] = useState(null);
       setIsLoading(false);
     }
   };
-const handleFileChange = (e) => {
-  setFile(e.target.files[0]);
-};
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
   return (
     <div className="w-full h-[100vh] bg-[#1E1C1C] flex justify-between">
       <div className="w-[150px] absolute h-[150px] rounded-full mt-[-20px] ml-[-20px] shadow-lg/30 bg-amber-50"></div>
@@ -114,20 +113,22 @@ const handleFileChange = (e) => {
         <img src={registerImg} alt="" className="w-[350px]" />
       </div>
       {/* top-right box */}
-      <div className="w-[950px] h-[100vh]">
+      <div className="w-[1000px] h-[100vh]">
         <img src={logo} alt="" className="w-[100px] h-[100px] ml-5" />
         <p className="text-[#5F48D5] font-bold font-Irish text-6xl flex justify-center-safe">
           Register
         </p>
-<div className="flex justify-end flex-col">
-  <p className="font-IstokWeb text-[1.5em] text-white">Profile Picture:</p>
-  <input
-    type="file"
-    accept="image/*"
-    onChange={handleFileChange}
-    className="w-[400px] px-3 py-2 text-xl font-medium bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-  />
-</div>
+        <div className="flex justify-end flex-col ml-15">
+          <p className="font-IstokWeb text-[1.5em] text-white">
+            Profile Picture:
+          </p>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="w-[200px] px-3 py-2 text-xl font-medium bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+          />
+        </div>
         <div className="w-full h-auto py-3 flex justify-evenly ">
           <div className="flex justify-end flex-col">
             <p className="font-IstokWeb text-[1.5em] text-white">Name:</p>
