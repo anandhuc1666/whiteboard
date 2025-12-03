@@ -67,7 +67,7 @@ function StudentAcc() {
                       : `border-[#A57C00]`
                   } `}
                 >
-                  <div className="w-[150px] h-[150px] bg-white rounded-full overflow-hidden"><MdEdit className="text-white absolute ml-25 text-4xl mt-28"/>
+                  <div className="w-[150px] h-[150px] bg-white rounded-full overflow-hidden"><MdEdit className="text-white absolute ml-25 text-4xl mt-28" />
                     {user?.profileImage ? (
                       <img
                         src={user.profileImage}
