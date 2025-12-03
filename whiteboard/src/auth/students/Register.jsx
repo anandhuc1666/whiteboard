@@ -3,8 +3,7 @@ import registerImg from "../../assets/registerImg.svg";
 import axios from "axios";
 import logo from "../../assets/Whiteboard.png";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [file, setFile] = useState(null);
@@ -93,139 +92,148 @@ function Register() {
     setFile(e.target.files[0]);
   };
   return (
-    <div className="w-full h-[100vh] bg-[#1E1C1C] flex justify-between">
-      <div className="w-[150px] absolute h-[150px] rounded-full mt-[-20px] ml-[-20px] shadow-lg/30 bg-amber-50"></div>
-      <div className="w-[950px] h-[100vh] bg-[#5F48D5] flex items-center rounded-br-4xl rounded-tr-4xl flex-col justify-start">
-        {/* blue under dev box  */}
-        <div className="w-full mt-0 flex justify-between">
-          <p className="font-Irish text-5xl text-white text-shadow-lg/30 ml-11 mt-50 leading-15">
-            We wish you joy in <br /> discovering and learning <br />
-            new things.
-          </p>
-          <div className="w-[300px] h-[500px]">
-            <div className="w-[120px] h-[120px] rounded-full ml-[190px] mt-[-10px] shadow-lg/30 opacity-85 bg-white"></div>
-            <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg/30  opacity-60 ml-[250px] mt-10"></div>
-            <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg/30  opacity-85 ml-[120px]"></div>
-            <div className="w-[30px] h-[30px] rounded-full bg-white shadow-lg/30  ml-[230px]"></div>
+    <div className="w-full min-h-screen bg-[#1E1C1C] flex items-center justify-center p-4">
+      <div className="w-full max-w-[1500px] flex flex-col md:flex-row bg-transparent rounded-2xl overflow-hidden">
+        {/* Left blue panel (visual) */}
+        <div className="w-full md:w-1/2 bg-[#5F48D5] flex flex-col items-center rounded-2xl p-6 md:p-10">
+          {/* Decorative circles — hidden on small screens (phones) */}
+          <div className="hidden sm:block self-start relative w-full mb-4">
+            <div className="absolute top-0 left-0 w-[150px] h-[150px] rounded-full -translate-y-4 -translate-x-4 shadow-lg/30  opacity-90" />
+            <div className="absolute top-0 right-6 w-[120px] h-[120px] rounded-full shadow-lg/30 bg-white opacity-85" />
+            <div className="absolute top-36 right-10 w-[80px] h-[80px] rounded-full bg-white shadow-lg/30 opacity-60" />
+            <div className="absolute top-54 left-24 w-[80px] h-[80px] rounded-full bg-white shadow-lg/30 opacity-85" />
+            <div className="absolute top-80 right-20 w-[30px] h-[30px] rounded-full bg-white shadow-lg/30" />
           </div>
-        </div>
 
-        <img src={registerImg} alt="" className="w-[350px]" />
-      </div>
-      {/* top-right box */}
-      <div className="w-[1000px] h-[100vh]">
-        <img src={logo} alt="" className="w-[100px] h-[100px] ml-5" />
-        <p className="text-[#5F48D5] font-bold font-Irish text-6xl flex justify-center-safe">
-          Register
-        </p>
-        <div className="flex justify-end flex-col ml-15">
-          <p className="font-IstokWeb text-[1.5em] text-white">
-            Profile Picture:
-          </p>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="w-[200px] px-3 py-2 text-xl font-medium bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-          />
-        </div>
-        <div className="w-full h-auto py-3 flex justify-evenly ">
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Name:</p>
-            <input
-              type="text"
-              className="w-[400px] px-3 text-2xl font-medium h-[70px] outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.name}
-              name="name"
-            />
-          </div>
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Last Name:</p>
-            <input
-              type="text"
-              className="w-[400px] h-[70px] px-3 text-2xl font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.lastName}
-              name="lastName"
-            />
-          </div>
-        </div>
-
-        <div className="w-full h-auto py-3 flex justify-evenly ">
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Number:</p>
-            <input
-              type="number"
-              className="w-[700px] h-[70px] px-3 text-2xl font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.number}
-              name="number"
-            />
-          </div>
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Age:</p>
-            <input
-              type="number"
-              className="w-[100px] h-[70px] px-3 text-2xl font-medium text-[#5F48D5] outline-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.age}
-              name="age"
-            />
-          </div>
-        </div>
-
-        <div className="w-full h-auto py-3 flex justify-evenly">
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Email:</p>
-            <input
-              type="email"
-              className="w-[830px] h-[70px] px-3 text-2xl font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.email}
-              name="email"
-            />
-          </div>
-        </div>
-
-        <div className="w-full h-auto py-3 flex justify-evenly">
-          <div className="flex justify-end flex-col">
-            <p className="font-IstokWeb text-[1.5em] text-white">Password :</p>
-            <input
-              type="password"
-              className="w-[830px] h-[70px] px-3 text-2xl font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
-              onChange={handleChange}
-              value={register.password}
-              name="password"
-            />
-          </div>
-        </div>
-
-        <div className="w-full h-auto py-3 flex justify-evenly flex-col px-18 ">
-          <div className="">
-            <p className="font-IstokWeb text-3xl text-white">
-              I have an account{" "}
+          <div className="text-left w-full">
+            <p className="font-Irish text-2xl md:text-4xl text-white leading-tight">
+              We wish you joy in <br /> discovering and learning <br /> new things.
             </p>
           </div>
-          <div className="w-full h-auto py-3 flex justify-between">
-            <Link to={"/Login"}>
-              <button
-                className="w-35 h-[60px] border-2 rounded-full border-white transition duration-700 ease-in-out text-[18px] hover:bg-[#5F48D5] hover:text-[#fff] text-[#5F48D5]"
-                // implement login navigation if needed
-              >
-                login
-              </button>
-            </Link>
-            <button
-              onClick={handleSend}
-              disabled={isLoading}
-              className={`w-35 h-[60px] border-2 rounded-full text-[18px] transition duration-700 ease-in-out text-[#FEFBFF] hover:bg-linear-to-bl from-violet-500 to-fuchsia-500 hover:text-black bg-[#5F48D5] border-[#000000] ${
-                isLoading ? "opacity-60 cursor-not-allowed" : ""
-              }`}
-            >
-              {isLoading ? "Registering..." : "register"}
-            </button>
+
+          <img
+            src={registerImg}
+            alt="register"
+            className="w-[220px] md:w-[350px] mt-6 md:mt-10"
+          />
+        </div>
+
+        {/* Right form panel */}
+        <div className="w-full md:w-1/2 bg-[#1E1C1C] p-6 md:p-10 flex flex-col gap-4 rounded-2xl">
+          <div className="flex items-center justify-between">
+            <img src={logo} alt="logo" className="w-16 h-16" />
+            <p className="text-[#5F48D5] font-bold font-Irish text-3xl md:text-5xl">
+              Register
+            </p>
           </div>
+
+          <div className="flex flex-col gap-3">
+            <label className="font-IstokWeb text-lg md:text-xl text-white">
+              Profile Picture:
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="w-full md:w-3/4 px-3 py-2 text-base md:text-lg font-medium bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+            />
+          </div>
+
+          <form className="w-full flex flex-col gap-4" onSubmit={handleSend}>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 flex flex-col gap-1">
+                <label className="font-IstokWeb text-lg text-white">Name:</label>
+                <input
+                  type="text"
+                  className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                  onChange={handleChange}
+                  value={register.name}
+                  name="name"
+                />
+              </div>
+              <div className="flex-1 flex flex-col gap-1">
+                <label className="font-IstokWeb text-lg text-white">Last Name:</label>
+                <input
+                  type="text"
+                  className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                  onChange={handleChange}
+                  value={register.lastName}
+                  name="lastName"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 flex flex-col gap-1">
+                <label className="font-IstokWeb text-lg text-white">Number:</label>
+                <input
+                  type="number"
+                  className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                  onChange={handleChange}
+                  value={register.number}
+                  name="number"
+                />
+              </div>
+              <div className="w-[120px] flex flex-col gap-1">
+                <label className="font-IstokWeb text-lg text-white">Age:</label>
+                <input
+                  type="number"
+                  className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium text-[#5F48D5] outline-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                  onChange={handleChange}
+                  value={register.age}
+                  name="age"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="font-IstokWeb text-lg text-white">Email:</label>
+              <input
+                type="email"
+                className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                onChange={handleChange}
+                value={register.email}
+                name="email"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="font-IstokWeb text-lg text-white">Password :</label>
+              <input
+                type="password"
+                className="w-full px-3 text-lg md:text-2xl h-[56px] md:h-[70px] font-medium outline-[#5F48D5] text-[#5F48D5] bg-[#FEFBFF] border-2 border-[#5F48D5] rounded-3xl"
+                onChange={handleChange}
+                value={register.password}
+                name="password"
+              />
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-2">
+              <div className="text-white">
+                <p className="font-IstokWeb text-lg">I have an account</p>
+              </div>
+
+              <div className="flex gap-4">
+                <Link to={"/Login"}>
+                  <button
+                    type="button"
+                    className="px-6 h-[48px] md:h-[60px] rounded-full border-2 border-white transition duration-300 ease-in-out text-sm md:text-base hover:bg-[#5F48D5] hover:text-white text-[#5F48D5]"
+                  >
+                    login
+                  </button>
+                </Link>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`px-6 h-[48px] md:h-[60px] rounded-full text-sm md:text-base transition duration-300 ease-in-out text-[#FEFBFF] bg-[#5F48D5] border-[#000000] ${
+                    isLoading ? "opacity-60 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {isLoading ? "Registering..." : "register"}
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
