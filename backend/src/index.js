@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import route from "./routes/userRoute/userRoute.js"
 import cookieParser from "cookie-parser"
 import studentRoute from "./routes/users/studentRoute.js"
+import courseRoute from "./routes/course/courseRoute.js"
 
 const app = express()
 app.use(express.json())
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_DB)
 
 app.use("/user",route)
 app.use("/students",studentRoute)
+app.use("/api/course", courseRoute);
 
 const PORT = process.env.PORT || 3001
 

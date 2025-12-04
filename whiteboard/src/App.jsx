@@ -12,6 +12,7 @@ import StudentAcc from "./Home/Account/StudentAcc";
 import NewPass from "./auth/students/NewPass";
 import Chats from "./Course/courseVdo/studentsChat/Chats";
 import Payment from "./Home/payment/Payment";
+import Page from "././staff/home/page"
 
 function App() {
   const location = useLocation();
@@ -66,6 +67,7 @@ function App() {
         <Route path="/chats" element={<Chats/>}/>
         <Route path="/payment" element={<Payment/>}/>
         <Route path="/*" element={<Notapage />} />
+        <Route path="/Admin-Page" element={<Page/>}/>
       </Routes>
     </div>
   );
