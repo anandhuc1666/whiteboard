@@ -9,6 +9,7 @@ import Class from "../Dashboard/Class";
 import Course from "../Dashboard/Course";
 import Schedule from "../Dashboard/Schedule";
 import Settings from "../Dashboard/Settings";
+import Adim_page from "../Dashboard/Adim-page";
 
 function Page() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function Page() {
           <AdminNav />
           <div className="flex flex-col gap-5 pt-5 px-5 w-full">
             <Head />
+           {!showNav&&<Adim_page/>} 
             <Routes>
               <Route path="/dashboard" element={<Dash />} />
               <Route path="/explore" element={<Explore />} />

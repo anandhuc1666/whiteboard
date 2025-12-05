@@ -1,5 +1,5 @@
 import React from 'react'
-import staffIMG from "../../assets/photo/AdminHeader.svg"
+import staffIMG from "../../assets/photo/staffDash.svg"
 
 function Head() {
   return (
