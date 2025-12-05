@@ -1,6 +1,6 @@
 import React from "react";
 import { RiAccountCircleLine } from "react-icons/ri";
-import congrats from "../../assets/photo/congrasDash.svg";
+import congrats from "../../assets/photo/congrasDash.svg"
 import { AiTwotoneDollarCircle } from "react-icons/ai";
 import { MdPendingActions } from "react-icons/md";
 

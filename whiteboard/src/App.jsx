@@ -30,7 +30,7 @@ function App() {
   const showNav = showNavRoutes.includes(currentPath);
 
   return (
-    <div>
+    <div className="p-0 m-0">
       {showNav && (
         <div className="w-full flex justify-center mt-10">
           <Nav />
@@ -66,8 +66,8 @@ function App() {
         <Route path="/verify-password" element={<NewPass />} />
         <Route path="/chats" element={<Chats/>}/>
         <Route path="/payment" element={<Payment/>}/>
-        <Route path="/*" element={<Notapage />} />
-        <Route path="/Admin-Page" element={<Page/>}/>
+        {/* <Route path="/*" element={<Notapage />} /> */}
+        <Route path="/Admin-Page" element={<Page/>}/> 
       </Routes>
     </div>
   );

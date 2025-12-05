@@ -6,6 +6,7 @@ import { PiGraduationCapFill } from "react-icons/pi";
 import { GrSchedulePlay } from "react-icons/gr";
 import { SiGoogleclassroom } from "react-icons/si";
 import { IoSettingsOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 function AdminNav() {
   const [active1, setActive1] = useState(false);
@@ -22,7 +23,7 @@ function AdminNav() {
     setActive5(false);
     setActive6(false);
   };
-    const handleActive2 = () => {
+  const handleActive2 = () => {
     setActive1(false);
     setActive2(true);
     setActive3(false);
@@ -30,7 +31,7 @@ function AdminNav() {
     setActive5(false);
     setActive6(false);
   };
-    const handleActive3 = () => {
+  const handleActive3 = () => {
     setActive1(false);
     setActive2(false);
     setActive3(true);
@@ -38,7 +39,7 @@ function AdminNav() {
     setActive5(false);
     setActive6(false);
   };
-    const handleActive4 = () => {
+  const handleActive4 = () => {
     setActive1(false);
     setActive2(false);
     setActive3(false);
@@ -46,7 +47,7 @@ function AdminNav() {
     setActive5(false);
     setActive6(false);
   };
-    const handleActive5 = () => {
+  const handleActive5 = () => {
     setActive1(false);
     setActive2(false);
     setActive3(false);
@@ -54,7 +55,7 @@ function AdminNav() {
     setActive5(true);
     setActive6(false);
   };
-    const handleActive6 = () => {
+  const handleActive6 = () => {
     setActive1(false);
     setActive2(false);
     setActive3(false);
@@ -69,32 +70,49 @@ function AdminNav() {
         <p className="font-Inter text-3xl mt-20 font-semibold">WhiteBoard</p>
       </div>
       <div className="w-full flex flex-col gap-10 pl-15 mt-10">
-        <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active1 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive1}
-        >
-          <BiSolidDashboard
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active1 == true ? "text-[#5F48D5]" : "text-4xl"
+        <Link to={"/Dashboard"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active1 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p className={`ml-20  ${active1 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Dashboard</p>
-        </div>
-        <div
+            onClick={handleActive1}
+          >
+            <BiSolidDashboard
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active1 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active1 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Dashboard
+            </p>
+          </div>
+        </Link>
+     <Link to={'/explore'}>
+             <div
           className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active2 === true ? "bg-[#F8F8F8]" : ""
           }`}
-          onClick={handleActive2} 
+          onClick={handleActive2}
         >
           <MdExplore
             className={`text-4xl hover:text-[#5F48D5] ${
               active2 == true ? "text-[#5F48D5]" : "text-4xl"
             }`}
           />
-          <p className={`ml-20  ${active2 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Explore</p>
+          <p
+            className={`ml-20  ${
+              active2 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+            } hover:text-[#5F48D5]`}
+          >
+            Explore
+          </p>
         </div>
+     </Link>
+
         <div
           className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active3 === true ? "bg-[#F8F8F8]" : ""
@@ -107,7 +125,13 @@ function AdminNav() {
               active3 == true ? "text-[#5F48D5]" : "text-4xl"
             }`}
           />
-          <p className={`ml-20  ${active3 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Course's</p>
+          <p
+            className={`ml-20  ${
+              active3 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+            } hover:text-[#5F48D5]`}
+          >
+            Course's
+          </p>
         </div>
 
         <div
@@ -122,7 +146,13 @@ function AdminNav() {
               active4 == true ? "text-[#5F48D5]" : "text-4xl"
             }`}
           />
-          <p className={`ml-20  ${active4 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Schedule</p>
+          <p
+            className={`ml-20  ${
+              active4 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+            } hover:text-[#5F48D5]`}
+          >
+            Schedule
+          </p>
         </div>
         <div
           className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
@@ -136,7 +166,13 @@ function AdminNav() {
               active5 == true ? "text-[#5F48D5]" : "text-4xl"
             }`}
           />
-          <p className={`ml-20  ${active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Class</p>
+          <p
+            className={`ml-20  ${
+              active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+            } hover:text-[#5F48D5]`}
+          >
+            Class
+          </p>
         </div>
         <div
           className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
@@ -150,7 +186,13 @@ function AdminNav() {
               active6 == true ? "text-[#5F48D5]" : "text-4xl"
             }`}
           />
-          <p className={`ml-20  ${active6 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Settings</p>
+          <p
+            className={`ml-20  ${
+              active6 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+            } hover:text-[#5F48D5]`}
+          >
+            Settings
+          </p>
         </div>
       </div>
     </div>
