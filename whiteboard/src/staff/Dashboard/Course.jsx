@@ -2,7 +2,7 @@ import React from 'react'
 
 function Course() {
   return (
-    <div>Course</div>
+    <div className='w-[1150px] h-screen flex'>Course</div>
   )
 }
 

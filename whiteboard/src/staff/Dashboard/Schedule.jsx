@@ -2,7 +2,7 @@ import React from 'react'
 
 function Schedule() {
   return (
-    <div>Schedule</div>
+    <div className='w-[1150px] h-screen flex'>Schedule</div>
   )
 }
 

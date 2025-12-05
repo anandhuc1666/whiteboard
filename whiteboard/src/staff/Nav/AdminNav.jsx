@@ -91,109 +91,115 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-     <Link to={'/explore'}>
-             <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active2 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive2}
-        >
-          <MdExplore
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active2 == true ? "text-[#5F48D5]" : "text-4xl"
+        <Link to={"/explore"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active2 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p
-            className={`ml-20  ${
-              active2 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
-            } hover:text-[#5F48D5]`}
+            onClick={handleActive2}
           >
-            Explore
-          </p>
-        </div>
-     </Link>
-
-        <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active3 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive3}
-        >
-          {" "}
-          <PiGraduationCapFill
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active3 == true ? "text-[#5F48D5]" : "text-4xl"
+            <MdExplore
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active2 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active2 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Explore
+            </p>
+          </div>
+        </Link>
+        <Link to={"/course"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active3 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p
-            className={`ml-20  ${
-              active3 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
-            } hover:text-[#5F48D5]`}
+            onClick={handleActive3}
           >
-            Course's
-          </p>
-        </div>
-
-        <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active4 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive4}
-        >
-          {" "}
-          <GrSchedulePlay
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active4 == true ? "text-[#5F48D5]" : "text-4xl"
+            {" "}
+            <PiGraduationCapFill
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active3 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active3 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Course's
+            </p>
+          </div>
+        </Link>
+        <Link to={"/schedule"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active4 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p
-            className={`ml-20  ${
-              active4 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
-            } hover:text-[#5F48D5]`}
+            onClick={handleActive4}
           >
-            Schedule
-          </p>
-        </div>
-        <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active5 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive5}
-        >
-          {" "}
-          <SiGoogleclassroom
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active5 == true ? "text-[#5F48D5]" : "text-4xl"
+            {" "}
+            <GrSchedulePlay
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active4 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active4 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Schedule
+            </p>
+          </div>
+        </Link>
+        <Link to={"/class"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active5 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p
-            className={`ml-20  ${
-              active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
-            } hover:text-[#5F48D5]`}
+            onClick={handleActive5}
           >
-            Class
-          </p>
-        </div>
-        <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
-            active6 === true ? "bg-[#F8F8F8]" : ""
-          }`}
-          onClick={handleActive6}
-        >
-          {" "}
-          <IoSettingsOutline
-            className={`text-4xl hover:text-[#5F48D5] ${
-              active6 == true ? "text-[#5F48D5]" : "text-4xl"
+            {" "}
+            <SiGoogleclassroom
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active5 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Class
+            </p>
+          </div>
+        </Link>
+        <Link to={"/setting"}>
+          <div
+            className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
+              active6 === true ? "bg-[#F8F8F8]" : ""
             }`}
-          />
-          <p
-            className={`ml-20  ${
-              active6 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
-            } hover:text-[#5F48D5]`}
+            onClick={handleActive6}
           >
-            Settings
-          </p>
-        </div>
+            {" "}
+            <IoSettingsOutline
+              className={`text-4xl hover:text-[#5F48D5] ${
+                active6 == true ? "text-[#5F48D5]" : "text-4xl"
+              }`}
+            />
+            <p
+              className={`ml-20  ${
+                active6 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
+              } hover:text-[#5F48D5]`}
+            >
+              Settings
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

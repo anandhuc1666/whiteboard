@@ -2,7 +2,7 @@ import React from 'react'
 
 function Settings() {
   return (
-    <div>Settings</div>
+    <div className='w-[1150px] h-screen flex'>Settings</div>
   )
 }
 

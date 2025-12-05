@@ -13,13 +13,13 @@ import Settings from "../Dashboard/Settings";
 function Page() {
   const location = useLocation();
   const currentPath = location.pathname.toLowerCase();
-  const showNavRoutes = ["/dashboard", "/explore", "/class"];
+  const showNavRoutes = ["/dashboard", "/explore", "/class","/course","/schedule","/setting"];
   const showNav = showNavRoutes.includes(currentPath);
 
   return (
     <div className="w-full h-screen bg-[#F8F8F8] flex m-0 p-0 box-border">
       {showNav && (
-        <div className="w-full flex justify-center mt-10">
+        <div className="w-full flex justify-center mt-0">
           <AdminNav />
           <div className="flex flex-col gap-5 pt-5 px-5 w-full">
             <Head />
@@ -27,7 +27,7 @@ function Page() {
               <Route path="/dashboard" element={<Dash />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/class" element={<Class />} />
-              <Route path="/Course" element={<Course />} />
+              <Route path="/course" element={<Course/>} />
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/setting" element={<Settings />} />
             </Routes>
