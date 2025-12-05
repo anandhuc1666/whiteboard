@@ -70,7 +70,7 @@ function AdminNav() {
       </div>
       <div className="w-full flex flex-col gap-10 pl-15 mt-10">
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active1 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive1}
@@ -83,7 +83,7 @@ function AdminNav() {
           <p className={`ml-20  ${active1 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Dashboard</p>
         </div>
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active2 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive2} 
@@ -96,7 +96,7 @@ function AdminNav() {
           <p className={`ml-20  ${active2 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Explore</p>
         </div>
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active3 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive3}
@@ -111,7 +111,7 @@ function AdminNav() {
         </div>
 
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active4 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive4}
@@ -125,7 +125,7 @@ function AdminNav() {
           <p className={`ml-20  ${active4 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Schedule</p>
         </div>
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active5 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive5}
@@ -139,7 +139,7 @@ function AdminNav() {
           <p className={`ml-20  ${active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"} hover:text-[#5F48D5]`}>Class</p>
         </div>
         <div
-          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] ${
+          className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
             active6 === true ? "bg-[#F8F8F8]" : ""
           }`}
           onClick={handleActive6}
