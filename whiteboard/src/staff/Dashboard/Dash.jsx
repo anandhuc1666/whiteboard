@@ -8,7 +8,7 @@ function Dash() {
   return (
     <div className="w-[1150px] h-screen flex flex-col items-center gap-5">
       <div className="flex gap-5 font-Inter">
-        <div className="w-[300px] h-[300px] bg-white rounded-2xl flex flex-col gap-3 py-3 text-[#5F48D5]">
+        <div className="w-[300px] h-[300px] bg-white rounded-2xl flex flex-col gap-3 py-3 text-[#5F48D5] shadow-lg/20">
           <div className="w-[220px] h-[70px] bg-[#F8F8F8] rounded-tr-2xl rounded-br-2xl flex items-center justify-center text-2xl font-semibold font-Inter">
             <p>Student’s</p>
           </div>
@@ -35,7 +35,7 @@ function Dash() {
             </div>
           </div>
         </div>
-        <div className="w-[800px] h-[300px] bg-white  rounded-2xl flex">
+        <div className="w-[800px] h-[300px] bg-white  rounded-2xl flex shadow-lg/20">
           {/* all data user and payment */}
           <div className="w-[450px] h-[300px] flex flex-col justify-evenly py-3">
             <div className=" w-full text-4xl font-semibold pl-15 font-Inter">
@@ -63,8 +63,52 @@ function Dash() {
         </div>
       </div>
       <div className="flex gap-5">
-        <div className="w-[800px] h-[300px] bg-white  rounded-2xl"></div>
-        <div className="w-[300px] h-[300px] bg-white  rounded-2xl"></div>
+        <div className="w-[800px] h-[300px] bg-white  rounded-2xl shadow-lg/20 flex items-end">
+          <div className="w-[200px] h-[300px] text-3xl font-semibold p-6 font-Inter"><p>Class list</p></div>
+          <div className="flex w-[600px] h-[200px] bg-[#5F48D5] text-white justify-between pt-5">
+            <div className="flex flex-col items-center gap-10">
+              <img
+                src="https://drive.google.com/thumbnail?id=1SfSE3pUd1n7Q2H5Cv6HMdbRpnSIlt9sh&sz=s800"
+                alt="GO"
+                className="w-[100px]"
+              />
+              <p>GO</p>
+            </div>
+            <div className="flex flex-col items-center gap-10">
+              <img
+                src="https://drive.google.com/thumbnail?id=1NoPei2UHe_ZoX1HfmqTA-i0k4Rb561Ph&sz=s800"
+                alt="flutter"
+                className="w-[100px]"
+              />
+              <p>FLUTTER</p>
+            </div>
+            <div className="flex flex-col items-center gap-10">
+              <img
+                src="https://drive.google.com/thumbnail?id=1TDaF2PMXJnQRP5nymDrh-LegZt5Ptvt8&sz=s800"
+                alt="javascript"
+                className="w-[100px]"
+              />
+              <p>JAVASCRIPT</p>
+            </div>
+            <div className="flex flex-col items-center gap-10">
+              <img
+                src="https://drive.google.com/thumbnail?id=1cQfwvc_gngwcC1XMVR-WxQ83EevFDIVb&sz=s800"
+                alt="PYTHON"
+                className="w-[100px]"
+              />
+              <p>PYTHON</p>
+            </div>
+            <div className="flex flex-col items-center gap-10">
+              <img
+                src="https://drive.google.com/thumbnail?id=1ocFqUd1EAw-xxRrjZ2DPcKi0LgeFGcGd&sz=s800"
+                alt="JAVA"
+                className="w-[100px]"
+              />
+              <p>JAVA</p>
+            </div>
+          </div>
+        </div>
+        <div className="w-[300px] h-[300px] bg-white  rounded-2xl shadow-lg/20"></div>
       </div>
     </div>
   );
