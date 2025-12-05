@@ -91,7 +91,7 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-        <Link to={"/explore"}>
+        <Link to={"/dashboard/explore"}>
           <div
             className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
               active2 === true ? "bg-[#F8F8F8]" : ""
@@ -112,7 +112,7 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-        <Link to={"/course"}>
+        <Link to={"/dashboard/course"}>
           <div
             className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
               active3 === true ? "bg-[#F8F8F8]" : ""
@@ -134,7 +134,7 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-        <Link to={"/schedule"}>
+        <Link to={"/dashboard/schedule"}>
           <div
             className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
               active4 === true ? "bg-[#F8F8F8]" : ""
@@ -156,7 +156,7 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-        <Link to={"/class"}>
+        <Link to={"/dashboard/class"}>
           <div
             className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
               active5 === true ? "bg-[#F8F8F8]" : ""
@@ -178,7 +178,7 @@ function AdminNav() {
             </p>
           </div>
         </Link>
-        <Link to={"/setting"}>
+        <Link to={"/dashboard/setting"}>
           <div
             className={` w-full  h-[60px] flex items-center pl-2 rounded-tl-2xl rounded-bl-2xl hover:bg-[#F8F8F8] hover:text-[#5F48D5] ${
               active6 === true ? "bg-[#F8F8F8]" : ""

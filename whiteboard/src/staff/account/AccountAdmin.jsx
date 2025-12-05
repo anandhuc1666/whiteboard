@@ -15,9 +15,16 @@ function AccountAdmin() {
           <img src={studentslist} alt="" className='w-[180px] mt-8'/>
           <p>Students List</p>
         </div>
-        <div className="w-full h-[450px] bg-amber-200 overflow-auto">
+        <div className="w-full h-[450px] overflow-auto">
           {/* student section all student data show there */}
-          <div className="w-full h-[85px] bg-[#F8F8F8] mt-3 rounded-2xl"></div>
+          <div className="w-full h-[85px] bg-[#F8F8F8] mt-3 rounded-2xl flex items-center justify-evenly px-2">
+            <div className={`w-[60px] h-[60px] border-2 rounded-full border-[#5F48D5]`}></div>
+            <div className="w-[230px] h-[85px] flex flex-col justify-center font-Inter font-semibold text-black">
+              <p>Name :</p>
+              <p>Student_ID :</p>
+              <p>Payment :</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
