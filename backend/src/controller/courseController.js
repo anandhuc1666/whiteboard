@@ -3,14 +3,13 @@ import CSvideo from "../models/courseVdoSchema.js"; // Importing your existing m
 export const addCourseVideo = async (req, res) => {
   try {
     const { name, tittle, discription, episode } = req.body;
-
-    // Multer adds 'files' object for multiple uploads
-    // We expect fields named 'videoFile' and 'thumbnail'
-    const videoFile = req.files['videoFile'] ? req.files['videoFile'][0] : null;
-    const thumbnail = req.files['thumbnail'] ? req.files['thumbnail'][0] : null;
+    const videoFile = req.files["videoFile"] ? req.files["videoFile"][0] : null;
+    const thumbnail = req.files["thumbnail"] ? req.files["thumbnail"][0] : null;
 
     if (!videoFile || !thumbnail) {
-      return res.status(400).json({ message: "Both video and thumbnail are required" });
+      return res
+        .status(400)
+        .json({ message: "Both video and thumbnail are required" });
     }
 
     const newVideo = new CSvideo({
@@ -19,14 +18,46 @@ export const addCourseVideo = async (req, res) => {
       discription: discription,
       episode: episode,
       videoId: videoFile.path, // Cloudinary Secure URL for the video
-      img: thumbnail.path      // Cloudinary Secure URL for the image
+      img: thumbnail.path, // Cloudinary Secure URL for the image
     });
 
     await newVideo.save();
 
-    res.status(201).json({ message: "Course video uploaded successfully", data: newVideo });
+    res
+      .status(201)
+      .json({ message: "Course video uploaded successfully", data: newVideo });
   } catch (error) {
     console.error("Upload error:", error);
     res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+export const getVdo_GO = async (req, res) => {
+  try {
+    const getVdo = await CSvideo.find({ name: "GO" });
+    if (!getVdo) {
+      return res.status(400).json({ message: "course not available" });
+    }
+    res.status(200).json({ message: "send course", course: getVdo });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deltVdo = async (req, res) => {
+  try {
+    const dltID = req.query.videoId;
+    if(!dltID){
+      return res.status(400).json({message:"_id: not found"})
+    }
+    console.log(dltID);
+    const getVdo = await CSvideo.findOneAndDelete({ _id: dltID });
+    console.log(getVdo);
+    if (!getVdo) {
+      return res.status(404).json({ message: "no file are exsisted now" });
+    }
+    res.status(200).json({ message: "selected video deleted successfully" });
+  } catch (error) {
+    console.log(error);
   }
 };
