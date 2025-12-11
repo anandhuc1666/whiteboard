@@ -7,11 +7,11 @@ import { getUserToken } from "../../utils/jwt.js";
 //new user register form
 export const register = async (req, res) => {
   const { name, lastName, age, number, email, password } = req.body;
-      const profileImage = req.file ? req.file.path : "";
+  const profileImage = req.file ? req.file.path : "";
   try {
-    // if (!name || !age || !number || !email || !password) {
-    //   return res.status(404).json({ message: "please fill the form" });
-    // }
+    if (!name || !age || !number || !email || !password) {
+      return res.status(404).json({ message: "please fill the form" });
+    }
     const user = await User.findOne({ email });
     if (user) {
       return res
@@ -85,29 +85,31 @@ export const verifyOtp = async (req, res) => {
   }
 };
 
-export const genaratePass = async(req,res)=>{
-  const {email,password,conformPassword} = req.body;
+export const genaratePass = async (req, res) => {
+  const { email, password, conformPassword } = req.body;
   try {
-    if(!email||!password||!conformPassword){
-      return res.status(404).json({message:"please ender the details"})
+    if (!email || !password || !conformPassword) {
+      return res.status(404).json({ message: "please ender the details" });
     }
-    const user =  await User.findOne({email})
-    const passkey = await bcrypt.compare(password,user.password)
-    if(passkey){
-      return res.status(400).json({message:"it's your old password"})
+    const user = await User.findOne({ email });
+    const passkey = await bcrypt.compare(password, user.password);
+    if (passkey) {
+      return res.status(400).json({ message: "it's your old password" });
     }
-    if(password !== conformPassword){
-      return res.status(400).json({message:"your password is missmach try again"})
+    if (password !== conformPassword) {
+      return res
+        .status(400)
+        .json({ message: "your password is missmach try again" });
     }
-    const changepass = await bcrypt.hash(password,8)
-   user.password = changepass
-   res.status(200).json({message:"your password is updated successfully"})
-    await user.save()
+    const changepass = await bcrypt.hash(password, 8);
+    user.password = changepass;
+    res.status(200).json({ message: "your password is updated successfully" });
+    await user.save();
   } catch (error) {
-    console.log(error)
-    return res.status(500).json({message:"server not responce"})
+    console.log(error);
+    return res.status(500).json({ message: "server not responce" });
   }
-}
+};
 
 //find the use and jwt genarate
 
@@ -118,6 +120,7 @@ export const student_login = async (req, res) => {
   }
   try {
     const user = await User.findOne({ email });
+    console.log(user);
     if (!user) {
       return res
         .status(404)
@@ -132,7 +135,7 @@ export const student_login = async (req, res) => {
         .status(404)
         .json({ message: "sorry no user is exsisted in this email" });
     }
-const token = getUserToken(user._id);
+    const token = getUserToken(user._id);
 
     res.cookie("userToken", token, {
       httpOnly: true,
@@ -140,7 +143,9 @@ const token = getUserToken(user._id);
       sameSite: "strict",
     });
 
-    return res.status(200).json({ message: "user login successfully",token,user });
+    return res
+      .status(200)
+      .json({ message: "user login successfully", token, user });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });
@@ -163,19 +168,19 @@ export const staff_login = async (req, res) => {
     if (!findpass) {
       return res.status(400).json({ message: "your password incurrect" });
     }
-    if (user.role !== "staff") {
+    if (user.role !== "mentor") {
       return res
         .status(404)
         .json({ message: "sorry no user is exsisted in this email" });
     }
-    const token = getUserToken (user._id);
+    const token = getUserToken(user._id);
 
     res.cookie("userToken", token, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
     });
-    return res.status(200).json({ message: "user login successfully",token });
+    return res.status(200).json({ message: "user login successfully", token });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "internel server issue" });

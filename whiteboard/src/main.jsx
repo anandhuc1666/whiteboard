@@ -2,14 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter } from 'react-router-dom'
-import App from "./App.jsx";
-import Page from "./staff/home/page.jsx";
+import Role from "./Role.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <StrictMode>
-      {/* <App /> */}
-      <Page/>
+     <Role/>
     </StrictMode>
   </BrowserRouter>
 );

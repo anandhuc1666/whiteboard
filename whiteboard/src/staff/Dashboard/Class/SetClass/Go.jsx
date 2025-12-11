@@ -15,13 +15,19 @@ function Go() {
   const [video, setVideo] = useState(null);
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const token = localStorage.getItem("token")
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5803/api/course/find_GO"
-      );
+        "http://localhost:5803/api/course/find_GO",{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        })
       setData(response.data.course);
+      console.log(response.data.course)
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +35,7 @@ function Go() {
 
   useEffect(() => {
     fetchData(); 
-  }, []);
+  },[]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({

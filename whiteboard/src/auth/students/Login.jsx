@@ -59,13 +59,14 @@ function Login() {
         `http://localhost:5803/user/staff_login`,
         staff
       );
-      console.log("Server response:", response.data);
+      
+      localStorage.setItem("token", response.data.token);
       await Swal.fire({
         title: "Success",
         text: response.data?.message || "User created",
         icon: "success",
       });
-      navigate("/staff");
+      navigate("/dashboard");
     } catch (error) {
       const message =
         error?.response?.data?.message ||

@@ -1,6 +1,7 @@
 import express from "express";
-import { addCourseVideo, deltVdo, getVdo_GO } from "../../controller/courseController.js";
+import { addCourseVideo, deltVdo, getVdo_GO, singleVdo } from "../../controller/courseController.js";
 import courseUpload from "../../middleware/courseUpload.js";
+import verifyUser from "../../middleware/token.js";
 
 const route = express.Router();
 
@@ -11,7 +12,8 @@ const uploadFields = courseUpload.fields([
 ]);
 
 route.post("/add-video", uploadFields, addCourseVideo);
-route.get('/find_GO',getVdo_GO)
+route.get('/find_GO',verifyUser,getVdo_GO)
 route.delete('/delete_GO',deltVdo)
+route.get('/select',singleVdo)
 
 export default route;

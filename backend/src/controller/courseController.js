@@ -1,3 +1,4 @@
+import User from "../models/authSchema.js";
 import CSvideo from "../models/courseVdoSchema.js"; // Importing your existing model
 
 export const addCourseVideo = async (req, res) => {
@@ -32,23 +33,43 @@ export const addCourseVideo = async (req, res) => {
   }
 };
 
+//get all video if mendor they get all course related vedio may if they are student they only get the course base vedio
+
 export const getVdo_GO = async (req, res) => {
   try {
-    const getVdo = await CSvideo.find({ name: "GO" });
-    if (!getVdo) {
-      return res.status(400).json({ message: "course not available" });
+    const userId = req.user.id;
+    console.log(userId);
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(400).json({ message: "no user login" });
     }
-    res.status(200).json({ message: "send course", course: getVdo });
+    if (user.role == "student") {
+      const getVdo = await CSvideo.find({ name: `${user.course}` });
+      if (!getVdo) {
+        return res.status(400).json({ message: "course not available" });
+      }
+      res.status(200).json({ message: "send course", course: getVdo });
+    }
+    if (user.role == "mentor") {
+      const getVdo = await CSvideo.find({ name: "GO" });
+      if (!getVdo) {
+        return res.status(400).json({ message: "course not available" });
+      }
+      res.status(200).json({ message: "send course", course: getVdo });
+    }
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "server issue" });
   }
 };
+
+//delete video by id base
 
 export const deltVdo = async (req, res) => {
   try {
     const dltID = req.query.videoId;
-    if(!dltID){
-      return res.status(400).json({message:"_id: not found"})
+    if (!dltID) {
+      return res.status(400).json({ message: "_id: not found" });
     }
     console.log(dltID);
     const getVdo = await CSvideo.findOneAndDelete({ _id: dltID });
@@ -59,5 +80,24 @@ export const deltVdo = async (req, res) => {
     res.status(200).json({ message: "selected video deleted successfully" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "server issue" });
   }
 };
+
+//select single 
+
+export const singleVdo =async(req,res)=>{
+  try {
+    const vdoId = req.query.videoId
+    if(!vdoId){
+      return res.status(400).json({message:"no video found"})
+    }
+    const vedio_list = await CSvideo.findById({_id:vdoId})
+    if(!vedio_list){
+      return res.status(400).json({message:"no video is found on this id"})
+    }
+    res.status(200).json({message:'seleted video', video:vedio_list})
+  } catch (error) {
+    console.log(error)
+  }
+}
