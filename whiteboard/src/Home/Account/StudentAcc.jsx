@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react"; // Import useRef
 import { FaStar } from "react-icons/fa6";
 import demo3dpic from "../../assets/picture/demo3dpic.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,42 +11,102 @@ import { MdEdit } from "react-icons/md";
 function StudentAcc() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  try {
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        return setUser(null);
-      }
-      axios
-        .get(`http://localhost:5803/students/student_profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        })
-        .then((ress) => setUser(ress.data.user))
-        .catch((err) => console.log(err));
-    }, []);
-  } catch (error) {
-    console.log(error);
+  const token = localStorage.getItem("token"); // Get token once
+  const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null); // Ref for the hidden file input
 
-    setUser(null);
-  }
+  // Fetches user profile data
+  useEffect(() => {
+    if (!token) {
+      return setUser(null);
+    }
+    axios
+      .get(`http://localhost:5803/students/student_profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Use stored token
+        },
+        withCredentials: true,
+      })
+      .then((ress) => setUser(ress.data.user))
+      .catch((err) => {
+        console.log("Profile fetch error:", err);
+        setUser(null);
+      });
+  }, [token]); // Depend on token
+
   let userNm = user?.name;
 
   const handleOut = () => {
     localStorage.removeItem("token");
     setUser(null);
+    // Optionally navigate to home or login page
+    navigate('/');
   };
-  console.log(user);
 
   const handleClick = () => {
     navigate("/payment");
   };
+
+  // 1. Function to open the hidden file dialog
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  // 2. Function to handle file selection
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    // Immediately upload after selection (common pattern)
+    if (selectedFile) {
+      handleUpload(selectedFile);
+    }
+  };
+
+  // 3. Function to handle the actual upload
+  const handleUpload = async (selectedFile) => {
+    // If we're calling this immediately after selection, use the selectedFile param
+    const fileToUpload = selectedFile || file;
+
+    if (!fileToUpload || !token) {
+        console.log("No file selected or no token available.");
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append("profileImage", fileToUpload); // Key must match backend: upload.single("profileImage")
+
+    try {
+        const response = await axios.post(
+            `http://localhost:5803/students/profile_edit`, // Corrected URL
+            formData,
+            {
+                headers: { 
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`, // Include Authorization header
+                },
+                timeout: 10000,
+            }
+        );
+
+        console.log("Server response:", response.data);
+        // Important: Update the local state with the new image URL from the server
+        setUser(prevUser => ({
+            ...prevUser,
+            profileImage: response.data.imageUrl // Assuming your backend returns the new image URL
+        }));
+        // Optional: Reset file state
+        setFile(null);
+        alert("Profile image updated successfully!");
+
+    } catch (error) {
+        console.error("Image upload failed:", error);
+        alert("Image upload failed. See console for details.");
+    }
+  };
+
   return (
     <div className="w-full h-auto flex justify-between px-[145px] py-[30px]">
-      <div className="w-[26%] h-[100vh] bg-[#5F48D5] rounded-2xl">
+      <div className="w-[26%] h-screen bg-[#5F48D5] rounded-2xl">
         <div className="w-full h-[400px]">
           <div className="w-full h-[350px] flex ">
             <div className="w-[100px] h-[350px] flex justify-evenly items-end flex-col">
@@ -67,7 +126,23 @@ function StudentAcc() {
                       : `border-[#A57C00]`
                   } `}
                 >
-                  <div className="w-[150px] h-[150px] bg-white rounded-full overflow-hidden"><MdEdit className="text-white absolute ml-25 text-4xl mt-28" />
+                  <div className="w-[150px] h-[150px] flex items-center justify-center text-center bg-white rounded-full overflow-hidden relative">
+                    {/* Hidden file input */}
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden" // Hide the default input
+                    />
+                    
+                    {/* The Edit Icon/Button that triggers the hidden input */}
+                    <MdEdit
+                      className="text-black absolute text-4xl cursor-pointer right-3 bottom-3 bg-white p-1 rounded-full border border-gray-300"
+                      onClick={handleImageClick} // Trigger file selection
+                    />
+                    
+                    {/* Display the image */}
                     {user?.profileImage ? (
                       <img
                         src={user.profileImage}
@@ -75,8 +150,8 @@ function StudentAcc() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      // Your default placeholder
-                      <div className="w-full h-full bg-gray-200"></div>
+                      // Fallback content when no image is available
+                      <div className="text-gray-500 text-sm">Upload Image</div>
                     )}
                   </div>
                 </div>
@@ -98,19 +173,25 @@ function StudentAcc() {
               ACTIVE
             </p>
           </div>
-          {/* user id section email and number + extra data they needed its add on there */}
+          {/* ... (rest of the component remains the same) */}
           <div className="w-full h-[520px] p-5">
             <div className="w-full h-[480px] bg-white rounded-2xl">
               <div className=" w-full font-Inter p-5 text-[15px] flex flex-col gap-5">
-                <p>Email: {user ? user.email : ""}</p>
-                <p>Phone: {user ? user.number : ""}</p>
+                <p>
+                  <span className="font-semibold">Email:</span>{" "}
+                  {user ? user.email : ""}
+                </p>
+                <p>
+                  <span className="font-semibold">Phone:</span>
+                  {user ? user.number : ""}
+                </p>
               </div>
               <div className="w-full h-0.5 bg-[#5F48D5]"></div>
               {/* payment option and course option */}
               {user && user.payment === false && (
                 <div className="flex w-full justify-center py-5">
                   <div
-                    className="w-[350px] h-[80px] bg-[green] hover:bg-[lightgreen] hover:text-[green] rounded-full flex items-center justify-center text-2xl font-semibold text-white"
+                    className="w-[350px] h-[80px] bg-[green] hover:bg-[lightgreen] hover:text-[green] rounded-full flex items-center justify-center text-2xl font-semibold text-white cursor-pointer" // Added cursor-pointer
                     onClick={handleClick}
                   >
                     <p>Unlock Premium Course</p>

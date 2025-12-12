@@ -17,3 +17,20 @@ export const student = async (req, res) => {
     return res.status(500).json({ message: "server issue" });
   }
 };
+
+export const profileEid = async(req,res)=>{
+  const profileImage = req.file ? req.file.path : "";
+  try {
+    const userId = req.user.id
+    if(!userId){
+      return res.status(400).json({message:'user not found'})
+    }
+    const user = await User.findById(userId)
+    user.profileImage = profileImage
+    user.save()
+    return res.status(200).json({message:'profile update sucessfully'})
+  } catch (error) {
+     console.log(error);
+    return res.status(500).json({ message: "server issue" });
+  }
+}

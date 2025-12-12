@@ -6,7 +6,7 @@ const route = Router()
 route.post("/register", (req, res, next) => {
     upload.single("profileImage")(req, res, (err) => {
         if (err) {
-            console.error("Upload Error:", err); // This prints the REAL error in your VS Code terminal
+            console.error("Upload Error:", err);
             return res.status(500).json({ message: "Image Upload Failed", error: err.message });
         }
         next();
