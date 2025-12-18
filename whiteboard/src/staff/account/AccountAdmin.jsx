@@ -99,9 +99,9 @@ function AccountAdmin() {
                 <p className="font-light">
                   <span className="font-semibold">Student_Ph:</span> {i.number}
                 </p>
-                <div className="font-light">
+                <div className="font-light flex gap-3">
                   <span className="font-semibold">Payment:</span>
-                  {i.payment === true ? <div>Completed</div> : <></>}
+                  {i.payment === true ? <div className="p-1 bg-green-400 rounded-full">Completed</div> : <div className="p-1 bg-red-400 rounded-full">Pending</div>}
                 </div>
               </div>
             </div>

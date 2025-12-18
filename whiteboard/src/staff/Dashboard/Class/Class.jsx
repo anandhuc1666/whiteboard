@@ -1,7 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Class() {
+  const [data, setData] = useState([]);
+  const fatch_Data = async () => {
+    try {
+      const responce = await axios.get(
+        `http://localhost:5803/api/staff/get_all_V_S`
+      );
+      setData(responce.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fatch_Data();
+  }, []);
   return (
     <div className="w-[1150px] h-screen flex">
       <div className="w-full h-auto p-10 flex flex-col gap-15 font-Inter">
@@ -15,8 +30,8 @@ function Class() {
               />
               <div className="w-full">
                 <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                  <p>Total video :</p>
-                  <p>Total students :</p>
+                  <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.GO}</span></p>
+                  <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.GO}</span></p>
                 </div>
               </div>
             </div>
@@ -30,8 +45,8 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video :</p>
-                <p>Total students :</p>
+                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.FLUTTER}</span></p>
+                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.FLUTTER}</span></p>
               </div>
             </div>
           </div>
@@ -43,8 +58,8 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video :</p>
-                <p>Total students :</p>
+                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.JAVASCRIPT}</span></p>
+                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.JAVASCRIPT}</span></p>
               </div>
             </div>
           </div>
@@ -56,8 +71,8 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video :</p>
-                <p>Total students :</p>
+                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.PYTHON}</span></p>
+                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.PYTHON}</span></p>
               </div>
             </div>
           </div>
@@ -71,8 +86,8 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video :</p>
-                <p>Total students :</p>
+                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.JAVA}</span></p>
+                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.JAVA}</span></p>
               </div>
             </div>
           </div>

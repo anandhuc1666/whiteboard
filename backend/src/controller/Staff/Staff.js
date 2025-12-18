@@ -101,7 +101,7 @@ export const get_all_V_S = async (req, res) => {
         FLUTTER: FLUTTER_student,
       },
       video: {
-        Go: Go_video,
+        GO: Go_video,
         JAVA: JAVA_video,
         PYTHON: PYTHON_video,
         JAVASCRIPT: JAVASCRIPT_video,
