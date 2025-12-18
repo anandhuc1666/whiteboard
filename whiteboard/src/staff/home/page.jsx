@@ -11,6 +11,7 @@ import Schedule from "../Dashboard/Schedule";
 import Settings from "../Dashboard/Settings";
 import Adim_page from "../Dashboard/Adim-page";
 import Go from "../Dashboard/Class/SetClass/Go";
+import Python from "../Dashboard/Class/SetClass/Python";
 
 function Page() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function Page() {
     "/dashboard/schedule",
     "/dashboard/setting",
     "/dashboard/class/go",
+    "/dashboard/class/python",
   ];
   const showNav = showNavRoutes.includes(currentPath);
 
@@ -42,6 +44,7 @@ function Page() {
               <Route path="/dashboard/schedule" element={<Schedule />} />
               <Route path="/dashboard/setting" element={<Settings />} />
               <Route path="/dashboard/class/go" element={<Go/>}/>
+              <Route path="/dashboard/class/python" element={<Python/>}/>
             </Routes>
           </div>
 

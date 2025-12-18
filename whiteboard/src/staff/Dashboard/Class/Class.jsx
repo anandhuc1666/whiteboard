@@ -30,8 +30,20 @@ function Class() {
               />
               <div className="w-full">
                 <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                  <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.GO}</span></p>
-                  <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.GO}</span></p>
+                  <p>
+                    Total video:{" "}
+                    <span className="font-Inter font-semibold">
+                      {" "}
+                      {data?.video?.GO}
+                    </span>
+                  </p>
+                  <p>
+                    Total students:{" "}
+                    <span className="font-Inter font-semibold">
+                      {" "}
+                      {data?.students?.GO}
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -45,11 +57,24 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.FLUTTER}</span></p>
-                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.FLUTTER}</span></p>
+                <p>
+                  Total video:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.video?.FLUTTER}
+                  </span>
+                </p>
+                <p>
+                  Total students:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.students?.FLUTTER}
+                  </span>
+                </p>
               </div>
             </div>
           </div>
+
           <div className="w-[250px] h-[250px] flex flex-col justify-evenly items-center bg-white rounded-2xl">
             <img
               src="https://drive.google.com/thumbnail?id=1TDaF2PMXJnQRP5nymDrh-LegZt5Ptvt8&sz=s800"
@@ -58,24 +83,50 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.JAVASCRIPT}</span></p>
-                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.JAVASCRIPT}</span></p>
+                <p>
+                  Total video:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.video?.JAVASCRIPT}
+                  </span>
+                </p>
+                <p>
+                  Total students:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.students?.JAVASCRIPT}
+                  </span>
+                </p>
               </div>
             </div>
           </div>
-          <div className="w-[250px] h-[250px] flex flex-col justify-evenly items-center bg-white rounded-2xl">
-            <img
-              src="https://drive.google.com/thumbnail?id=1cQfwvc_gngwcC1XMVR-WxQ83EevFDIVb&sz=s800"
-              alt="PYTHON"
-              className="w-[85px]"
-            />
-            <div className="w-full">
-              <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.PYTHON}</span></p>
-                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.PYTHON}</span></p>
+          <Link to={"/dashboard/class/python"}>
+            <div className="w-[250px] h-[250px] flex flex-col justify-evenly items-center bg-white rounded-2xl">
+              <img
+                src="https://drive.google.com/thumbnail?id=1cQfwvc_gngwcC1XMVR-WxQ83EevFDIVb&sz=s800"
+                alt="PYTHON"
+                className="w-[85px]"
+              />
+              <div className="w-full">
+                <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
+                  <p>
+                    Total video:{" "}
+                    <span className="font-Inter font-semibold">
+                      {" "}
+                      {data?.video?.PYTHON}
+                    </span>
+                  </p>
+                  <p>
+                    Total students:{" "}
+                    <span className="font-Inter font-semibold">
+                      {" "}
+                      {data?.students?.PYTHON}
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
         <div className="JAVA">
           <div className="w-[250px] h-[250px] flex flex-col justify-evenly items-center bg-white rounded-2xl">
@@ -86,8 +137,20 @@ function Class() {
             />
             <div className="w-full">
               <div className="w-[200px] h-[100px] rounded-tr-2xl rounded-br-2xl border-t-2 border-r-2 border-b-2 border-[#5F48D5] bg-[#F8F8F8] flex flex-col gap-2 justify-center pl-2">
-                <p>Total video: <span className="font-Inter font-semibold"> {data?.video?.JAVA}</span></p>
-                <p>Total students: <span className="font-Inter font-semibold"> {data?.students?.JAVA}</span></p>
+                <p>
+                  Total video:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.video?.JAVA}
+                  </span>
+                </p>
+                <p>
+                  Total students:{" "}
+                  <span className="font-Inter font-semibold">
+                    {" "}
+                    {data?.students?.JAVA}
+                  </span>
+                </p>
               </div>
             </div>
           </div>

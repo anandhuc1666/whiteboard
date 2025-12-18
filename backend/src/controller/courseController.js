@@ -38,7 +38,6 @@ export const addCourseVideo = async (req, res) => {
 export const getVdo_GO = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log(userId);
     const user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({ message: "no user login" });
@@ -52,6 +51,34 @@ export const getVdo_GO = async (req, res) => {
     }
     if (user.role == "mentor") {
       const getVdo = await CSvideo.find({ name: "GO" });
+      if (!getVdo) {
+        return res.status(400).json({ message: "course not available" });
+      }
+      res.status(200).json({ message: "send course", course: getVdo });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "server issue" });
+  }
+};
+// python getVdo_python
+
+export const getVdo_python = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(400).json({ message: "no user login" });
+    }
+    if (user.role == "student") {
+      const getVdo = await CSvideo.find({ name: `${user.course}` });
+      if (!getVdo) {
+        return res.status(400).json({ message: "course not available" });
+      }
+      res.status(200).json({ message: "send course", course: getVdo });
+    }
+    if (user.role == "mentor") {
+      const getVdo = await CSvideo.find({ name: "PYTHON" });
       if (!getVdo) {
         return res.status(400).json({ message: "course not available" });
       }

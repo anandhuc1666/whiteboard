@@ -39,7 +39,6 @@ function AccountAdmin() {
     fatch_Data();
     staff_Data();
   }, []);
-  console.log(staff.name);
   const user_name = staff.name;
   const user_email = staff.email;
   const user_number = staff.number;

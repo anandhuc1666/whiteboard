@@ -203,7 +203,7 @@ function StudentAcc() {
         </div>
       </div>
       {/* rigt side container */}
-      <div className="w-[72%] h-[100vh] flex flex-col gap-8">
+      <div className="w-[72%] h-[100vh]flex flex-col gap-8">
         {/* header section */}
         <div className="w-full h-[350px] bg-[#5F48D5] rounded-2xl flex items-end py-10">
           {/* user name welcome section */}

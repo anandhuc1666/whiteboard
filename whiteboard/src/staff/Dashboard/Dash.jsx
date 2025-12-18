@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RiAccountCircleLine } from "react-icons/ri";
-import congrats from "../../assets/photo/congrasDash.svg"
+import congrats from "../../assets/photo/congrasDash.svg";
 import { AiTwotoneDollarCircle } from "react-icons/ai";
 import { MdPendingActions } from "react-icons/md";
+import axios from "axios";
 
 function Dash() {
+  const [data, setData] = useState([]);
+
+  const fatchData = async () => {
+    try {
+      const responce = await axios(
+        `http://localhost:5803/students/student_list`
+      );
+      setData(responce.data.users)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    useEffect(() => {
+    fatchData();
+  }, []);
+const active = data.filter((i)=>i.status === "true")
+const inActive = data.filter((i)=>i.status !== "true")
   return (
     <div className="w-[1150px] h-screen flex flex-col items-center gap-5">
       <div className="flex gap-5 font-Inter">
@@ -21,16 +39,16 @@ function Dash() {
             <div className="w-[250px] h-[60px] bg-[#F8F8F8] rounded-2xl border-2 border-[#5F48D5] flex items-center pl-2 text-[20px] font-semibold text-black justify-between">
               <p>Active</p>
               <div className="w-[100px] h-[39px] bg-[#5F48D5] rounded-tl-[5px] rounded-bl-[5px] flex items-center justify-center text-white text-2xl">
-                <p>1503</p>
+                <p>{active?.length}</p>
               </div>
             </div>
           </div>
           <div className="w-full flex justify-center">
             {/* Bloack user list fach into the section */}
             <div className="w-[250px] h-[60px] bg-[#F8F8F8] rounded-2xl border-2 border-[#5F48D5] flex items-center pl-2 text-[20px] font-semibold text-black justify-between">
-              <p>Block</p>
+              <p>Inactive</p>
               <div className="w-[100px] h-[39px] bg-[#5F48D5] rounded-tl-[5px] rounded-bl-[5px] flex items-center justify-center text-white text-2xl">
-                <p>12</p>
+                <p>{inActive.length}</p>
               </div>
             </div>
           </div>
@@ -64,7 +82,9 @@ function Dash() {
       </div>
       <div className="flex gap-5">
         <div className="w-[800px] h-[300px] bg-white  rounded-2xl shadow-lg/20 flex items-end">
-          <div className="w-[200px] h-[300px] text-3xl font-semibold p-6 font-Inter"><p>Class list</p></div>
+          <div className="w-[200px] h-[300px] text-3xl font-semibold p-6 font-Inter">
+            <p>Class list</p>
+          </div>
           <div className="flex w-[600px] h-[200px] bg-[#5F48D5] text-white justify-between pt-5">
             <div className="flex flex-col items-center gap-10">
               <img
