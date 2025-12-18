@@ -67,7 +67,7 @@ function Nav() {
           <Link to={'/account'}>
             <div className="w-[130px] h-[50px] pl-0.5 bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center justify-between px-0 shadow-lg/20">
               <p className="text-[#5F48D5]">{userID?.name || "User"}</p>
-              <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center"></div>
+              <div className={`w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center bg-cover border-2 ${userID.payment === true? 'border-[#A57C00]':'border-[#5F48D5]'}`} style={{backgroundImage:`URL('${userID.profileImage}')`}}></div>
             </div>
           </Link>
         )}

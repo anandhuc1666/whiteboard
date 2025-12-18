@@ -34,3 +34,18 @@ export const profileEid = async(req,res)=>{
     return res.status(500).json({ message: "server issue" });
   }
 }
+
+
+export const students_list = async(req,res)=>{
+  try {
+    const users = await User.find()
+    const find_student = users.filter((i,k)=>i.role === "student")
+    if(!users){
+      return res.status(404).json({message:'no user exsisted now'})
+    }
+    res.status(200).json({message:'students list',users:find_student})
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "server issue" });
+  }
+}

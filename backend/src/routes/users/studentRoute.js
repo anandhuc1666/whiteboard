@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { profileEid, student } from "../../controller/students/students.js";
+import { profileEid, student, students_list } from "../../controller/students/students.js";
 import verifyUser from "../../middleware/token.js";
 import upload from "../../middleware/upload.js";
 
@@ -14,5 +14,6 @@ studentRoute.post('/profile_edit',verifyUser,(req, res, next) => {
         next();
     });
 },profileEid)
+studentRoute.get('/student_list',students_list)
 
 export default studentRoute;
