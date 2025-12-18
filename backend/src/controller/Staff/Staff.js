@@ -1,0 +1,26 @@
+import User from "../../models/authSchema";
+
+const GO = `https://drive.google.com/thumbnail?id=1SfSE3pUd1n7Q2H5Cv6HMdbRpnSIlt9sh&sz=s800`
+const FLUTTER = `https://drive.google.com/thumbnail?id=1NoPei2UHe_ZoX1HfmqTA-i0k4Rb561Ph&sz=s800`
+const JAVASCRIPT = `https://drive.google.com/thumbnail?id=1TDaF2PMXJnQRP5nymDrh-LegZt5Ptvt8&sz=s800`
+const PYTHON = `https://drive.google.com/thumbnail?id=1cQfwvc_gngwcC1XMVR-WxQ83EevFDIVb&sz=s800`
+const JAVA = `https://drive.google.com/thumbnail?id=1ocFqUd1EAw-xxRrjZ2DPcKi0LgeFGcGd&sz=s800`
+
+export const userStaff = async (req, res) => {
+  try {
+    const userId = req.user.id;
+  if(!userId){
+    return res.status(400).json({message:'no user _id: found'})
+  }
+    const user = await User.findById(userId);
+    if(!user){
+        return res.status(404).json({message:'user not found'})
+    }
+    if(user){
+        return
+
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
