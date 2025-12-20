@@ -64,7 +64,7 @@ function Login({ setToken }) {
         text: response.data?.message || "Staff Login Successful",
         icon: "success",
       });
-      navigate("/Admin-Page");
+      navigate("/dashboard");
     } catch (error) {
       const message =
         error?.response?.data?.message ||

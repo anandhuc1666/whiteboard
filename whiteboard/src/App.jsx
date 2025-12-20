@@ -7,14 +7,14 @@ import Aboute from "./Home/Aboute/Aboute";
 import StudentsCouse from "./Course/students/StudentsCouse";
 import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
-import Page from "./staff/home/page"
-import { UserContext } from "./UserContext"
+import Page from "./staff/home/page";
+import { UserContext } from "./UserContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
   const location = useLocation();
-const [token, setToken] = useState(localStorage.getItem("token")); // Track token in state
+  const [token, setToken] = useState(localStorage.getItem("token")); // Track token in state
   const [user, setUser] = useState(null);
 
   const handleLogout = () => {
@@ -24,9 +24,18 @@ const [token, setToken] = useState(localStorage.getItem("token")); // Track toke
   };
   const userID = `http://localhost:5803/students/student_profile`;
 
-  const showNavRoutes = ["/", "/about", "/studentscourse", "/course", "/account", "/chats"];
+
+  const showNavRoutes = [
+    "/",
+    "/about",
+    "/studentscourse",
+    "/course",
+    "/account",
+    "/chats",
+  ];
   const currentPath = location.pathname.toLowerCase();
   const showNav = showNavRoutes.includes(currentPath);
+    const isStaffPage = currentPath.startsWith("/dashboard");
 
   const fetchData = async () => {
     if (!token) {
@@ -49,10 +58,11 @@ const [token, setToken] = useState(localStorage.getItem("token")); // Track toke
     fetchData();
   }, [token]); // Re-fetch whenever token state changes
 
-
   return (
     // 2. Wrap the entire app in Provider so StudentAcc and Nav share the same state
-    <UserContext.Provider value={{ user, setUser, token, setToken, handleLogout }}>
+    <UserContext.Provider
+      value={{ user, setUser, token, setToken, handleLogout }}
+    >
       <div className="p-0 m-0">
         {showNav && (
           <div className="w-full flex justify-center mt-10">
@@ -63,19 +73,25 @@ const [token, setToken] = useState(localStorage.getItem("token")); // Track toke
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<Aboute />} />
-          
+
           {/* Prevent logged-in users from seeing login/register */}
-          <Route 
-            path="/login" 
-            element={token ? <Navigate to="/" /> : <Login setToken={setToken} />} 
+          <Route
+            path="/login"
+            element={
+              token ? (
+                <Navigate to={isStaffPage ? "/dashboard" : "/"} />
+              ) : (
+                <Login setToken={setToken} />
+              )
+            }
           />
-          <Route 
-          path="/Admin-Page" 
-          element={token ? <Page /> : <Navigate to="/login" />} 
-        />
-          <Route 
-            path="/register" 
-            element={token ? <Navigate to="/" /> : <Register />} 
+          <Route
+            path="/dashboard"
+            element={token ? <Page /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/register"
+            element={token ? <Navigate to="/" /> : <Register />}
           />
 
           {/* Protected Routes */}
@@ -87,7 +103,16 @@ const [token, setToken] = useState(localStorage.getItem("token")); // Track toke
             path="/studentscourse"
             element={token ? <StudentsCouse /> : <Navigate to="/login" />}
           />
-          <Route path="/Admin-Page" element={token ? <Page /> : <Navigate to="/login" />} />
+          <Route
+            path="/dashboard"
+            element={token ? <Page /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="*"
+            element={
+              isStaffPage ? <Navigate to="/dashboard" /> : <Navigate to="/" />
+            }
+          />
         </Routes>
       </div>
     </UserContext.Provider>

@@ -45,6 +45,7 @@ function Page() {
               <Route path="/dashboard/setting" element={<Settings />} />
               <Route path="/dashboard/class/go" element={<Go/>}/>
               <Route path="/dashboard/class/python" element={<Python/>}/>
+              <Route path="*" element={<Adim_page/>}/>
             </Routes>
           </div>
 
