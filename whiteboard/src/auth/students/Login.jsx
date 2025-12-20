@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-function Login() {
+function Login({ setToken }) {
   const [shift, setShift] = useState(false);
   const [studentLogin, setStudentLogin] = useState({ email: "", password: "" });
   const [staff, setStaff] = useState({ email: "", password: "" });
@@ -19,18 +19,17 @@ function Login() {
     e.preventDefault();
     setStudentLogin({ ...studentLogin, [e.target.name]: e.target.value });
   };
-  const handleSend = async (e) => {
+ const handleSend = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `http://localhost:5803/user/user-login`,
-        studentLogin
-      );
+      const response = await axios.post(`http://localhost:5803/user/user-login`, studentLogin);
+      
       localStorage.setItem("token", response.data.token);
+      setToken(response.data.token); // Update parent state immediately
 
       await Swal.fire({
         title: "Success",
-        text: response.data?.message || "User created",
+        text: response.data?.message || "Login Successful",
         icon: "success",
       });
       navigate("/");
@@ -55,18 +54,17 @@ function Login() {
   };
   const handleSendstaff = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:5803/user/staff_login`,
-        staff
-      );
+      const response = await axios.post(`http://localhost:5803/user/staff_login`, staff);
       
       localStorage.setItem("token", response.data.token);
+      setToken(response.data.token); // Update parent state immediately
+
       await Swal.fire({
         title: "Success",
-        text: response.data?.message || "User created",
+        text: response.data?.message || "Staff Login Successful",
         icon: "success",
       });
-      navigate("/dashboard");
+      navigate("/Admin-Page");
     } catch (error) {
       const message =
         error?.response?.data?.message ||

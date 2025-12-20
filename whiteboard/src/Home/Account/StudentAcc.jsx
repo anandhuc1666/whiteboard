@@ -7,13 +7,17 @@ import mini_sm1 from "../../assets/one.jpg";
 import mini_sm2 from "../../assets/two.jpg";
 import mini_sm3 from "../../assets/three.jpg";
 import { MdEdit } from "react-icons/md";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext";
 
 function StudentAcc() {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token"); // Get token once
+  // const [user, setUser] = useState(null);
+  // const navigate = useNavigate();
+  // const token = localStorage.getItem("token"); // Get token once
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); // Ref for the hidden file input
+  const { user, setUser, token, handleLogout } = useContext(UserContext);
+  const navigate = useNavigate();
 
   // Fetches user profile data
   useEffect(() => {
@@ -36,10 +40,14 @@ function StudentAcc() {
 
   let userNm = user?.name;
 
-  const handleOut = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    // Optionally navigate to home or login page
+  // const handleOut = () => {
+  //   localStorage.removeItem("token");
+  //   setUser(null);
+  //   // Optionally navigate to home or login page
+  //   navigate('/');
+  // };
+  const onLogoutClick = () => {
+    handleLogout(); // This updates App.jsx state instantly
     navigate('/');
   };
 
@@ -160,9 +168,9 @@ function StudentAcc() {
               <div className=" w-[320px] h-[100px] flex items-center pl-10">
                 <button
                   className="w-[130px] h-12 bg-white rounded-full text-[#5F48D5] font-Inter text-2xl font-bold"
-                  onClick={user ? handleOut : undefined}
+                 onClick={token ? onLogoutClick : () => navigate('/login')}
                 >
-                  {user ? "logout" : <Link to="/login">login</Link>}
+                  {token ? "logout" : "login"}
                 </button>
               </div>
             </div>
