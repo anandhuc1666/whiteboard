@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Settings() {
   const [staff, setStaff] = useState([]);
+  const navigate = useNavigate()
   const token = localStorage.getItem("token");
 
   const staff_Data = async () => {
@@ -25,6 +26,7 @@ function Settings() {
   };
   const handleRemove = () => {
     localStorage.removeItem("token");
+    navigate('/login')
   };
 
   useEffect(() => {
@@ -33,7 +35,8 @@ function Settings() {
   return (
     <div className="w-[1150px] h-screen flex flex-col gap-5">
       <div className="flex gap-10">
-        <div className="w-[250px] h-[250px] rounded-full bg-amber-300"></div>
+        <div className="w-[250px] h-[250px] rounded-full bg-cover bg-white shadow-lg/20" style={{ backgroundImage: `URL(${staff.profileImage})` }}>
+        <img src="" alt="" /></div>
         <div className="py-10 flex flex-col gap-3">
           <p className="flex gap-6 items-center text-[19px]">
             <span className="text-2xl font-Inter font-semibold">Name:</span>
@@ -54,11 +57,11 @@ function Settings() {
         </div>
       </div>
       <Link to={'/login'}>
-        <div className="w-full h-[100px] bg-amber-200 flex items-center pl-[30px]">
+        <div className="w-full h-[100px] flex items-center pl-[30px]">
           <button
-            className="w-[220px] h-20 bg-amber-600 text-2xl rounded-full"
+            className="w-[220px] h-20 bg-[#5F48D5] shadow-lg/20 text-2xl rounded-full text-white"
             onClick={handleRemove}
-          ></button>
+          >User Page</button>
         </div>
       </Link>
     </div>

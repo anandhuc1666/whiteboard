@@ -130,7 +130,7 @@ function AdminNav() {
                 active3 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
               } hover:text-[#5F48D5]`}
             >
-              Course's
+              Class
             </p>
           </div>
         </Link>
@@ -174,7 +174,7 @@ function AdminNav() {
                 active5 == true ? "text-[#5F48D5] text-2xl" : "text-[20px]"
               } hover:text-[#5F48D5]`}
             >
-              Class
+             Course's 
             </p>
           </div>
         </Link>

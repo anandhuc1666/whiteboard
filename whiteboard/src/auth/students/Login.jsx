@@ -57,7 +57,7 @@ function Login({ setToken }) {
       const response = await axios.post(`http://localhost:5803/user/staff_login`, staff);
       
       localStorage.setItem("token", response.data.token);
-      setToken(response.data.token); // Update parent state immediately
+      setToken(response.data.token); 
 
       await Swal.fire({
         title: "Success",

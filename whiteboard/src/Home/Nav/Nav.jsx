@@ -47,7 +47,7 @@ const user = useContext(UserContext);
         ) : (
           <Link to={'/account'}>
             <div className="w-[130px] h-[50px] pl-0.5 bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center justify-between px-0 shadow-lg/20">
-              <p className="text-[#5F48D5]">{user?.user.name || "User"}</p>
+              <p className="text-[#5F48D5]">{user?.user.name || "😎 hi"}</p>
               <div className={`w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center bg-cover border-2 ${user?.user.payment === true? 'border-[#A57C00]':'border-[#5F48D5]'}`} style={{backgroundImage:`URL('${user?.user.profileImage}')`}}></div>
             </div>
           </Link>

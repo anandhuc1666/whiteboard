@@ -38,7 +38,7 @@ function AccountAdmin() {
   useEffect(() => {
     fatch_Data();
     staff_Data();
-  }, []);
+  }, [token]);
   const user_name = staff.name;
   const user_email = staff.email;
   const user_number = staff.number;

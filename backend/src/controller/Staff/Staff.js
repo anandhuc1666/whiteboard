@@ -113,3 +113,17 @@ export const get_all_V_S = async (req, res) => {
     return res.status(500).json({ message: "internal server issue" });
   }
 };
+
+export const staff_List = async (req, res) => {
+  try {
+    const staffs = await User.find();
+    if (!staffs) {
+      return res.status(404).json({ message: "staff not found" });
+    }
+    const staff = staffs.filter((i) => i.role == "mentor");
+    return res.status(200).json({ message: "staff lists", staff: staff });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server issue" });
+  }
+};

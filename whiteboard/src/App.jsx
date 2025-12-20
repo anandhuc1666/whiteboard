@@ -7,6 +7,7 @@ import Aboute from "./Home/Aboute/Aboute";
 import StudentsCouse from "./Course/students/StudentsCouse";
 import StudentsCourse from "./Course/courseVdo/StudentsCourse";
 import StudentAcc from "./Home/Account/StudentAcc";
+import NewPass from "././auth/students/NewPass"
 import Page from "./staff/home/page";
 import { UserContext } from "./UserContext";
 import { useEffect, useState } from "react";
@@ -56,7 +57,8 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, [token]); // Re-fetch whenever token state changes
+  }, [token]); 
+ 
 
   return (
     // 2. Wrap the entire app in Provider so StudentAcc and Nav share the same state
@@ -79,7 +81,7 @@ function App() {
             path="/login"
             element={
               token ? (
-                <Navigate to={isStaffPage ? "/dashboard" : "/"} />
+                <Navigate to={isStaffPage ? "/dashboard"  : "/"} />
               ) : (
                 <Login setToken={setToken} />
               )
@@ -95,6 +97,7 @@ function App() {
           />
 
           {/* Protected Routes */}
+          <Route path="/verify-password" element={<NewPass/>}/>
           <Route
             path="/account"
             element={token ? <StudentAcc /> : <Navigate to="/login" />}
@@ -103,8 +106,9 @@ function App() {
             path="/studentscourse"
             element={token ? <StudentsCouse /> : <Navigate to="/login" />}
           />
+          <Route path="/course" element={token?<StudentsCourse/>:<Navigate to="/login" />}/>
           <Route
-            path="/dashboard"
+            path="/dashboard/*"
             element={token ? <Page /> : <Navigate to="/login" />}
           />
           <Route
