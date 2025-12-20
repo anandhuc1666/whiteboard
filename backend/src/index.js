@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 import studentRoute from "./routes/users/studentRoute.js"
 import courseRoute from "./routes/course/courseRoute.js"
 import staff_profile from "./routes/staff/staffRoute.js"
+import admin_Route from "./routes/admin/adminRoute.js"
 
 const app = express()
 app.use(express.json())
@@ -24,6 +25,7 @@ app.use("/user",route)
 app.use("/students",studentRoute)
 app.use("/api/course", courseRoute);
 app.use("/api/staff",staff_profile)
+app.use("/api/user",admin_Route)
 
 const PORT = process.env.PORT || 3001
 

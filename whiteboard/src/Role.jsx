@@ -15,9 +15,7 @@ function Role() {
   const showNav = showNavRoutes.includes(currentPath);
   return (
     <div>
-      {showNav ?<App/>:<Page/>}
-        
-        
+      {showNav ?<App/>:<Page/>}  
     </div>
   )
 }

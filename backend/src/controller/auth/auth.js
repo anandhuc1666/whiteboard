@@ -130,11 +130,12 @@ export const student_login = async (req, res) => {
     if (!findpass) {
       return res.status(400).json({ message: "your password incurrect" });
     }
-    if (user.role !== "student") {
-      return res
-        .status(404)
-        .json({ message: "sorry no user is exsisted in this email" });
-    }
+    // if (user.role !== "student"||user.role !== "admin") {
+    //   return res
+    //     .status(404)
+    //     .json({ message: "sorry no user is exsisted" });
+    // }
+
     const token = getUserToken(user._id);
 
     res.cookie("userToken", token, {

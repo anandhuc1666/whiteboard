@@ -1,30 +1,11 @@
-import { useState } from "react";
+import { useContext} from "react";
 import logo from "../../assets/Whiteboard.png";
 import { IoMdSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
-
+import { UserContext } from "../../UserContext";
 
 function Nav() {
-  const [userID, setUserID] = useState(false)
-
-  useEffect(() => {
-    try {
-      const token = localStorage.getItem("token");
-      axios
-        .get("http://localhost:5803/students/student_profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        })
-        .then((res) => setUserID(res.data.user))
-        .catch((error) => console.log(error));
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+const user = useContext(UserContext);
 
   return (
     <div className="w-[85%] h-[120px] bg-[#F8F8F8] rounded-2xl flex items-center justify-between">
@@ -55,7 +36,7 @@ function Nav() {
           />
           <IoMdSearch className="text-5xl text-[#CAD3F5]" />
         </div>
-        {!userID? (
+        {!user?.user? (
           <div className="w-[130px] h-[50px] bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center px-0 shadow-lg/20">
             <Link to={"/login"}>
               <div className="w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center">
@@ -66,8 +47,8 @@ function Nav() {
         ) : (
           <Link to={'/account'}>
             <div className="w-[130px] h-[50px] pl-0.5 bg-[#D9D9D9] border-2 border-[#5F48D5] rounded-full flex items-center justify-between px-0 shadow-lg/20">
-              <p className="text-[#5F48D5]">{userID?.name || "User"}</p>
-              <div className={`w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center bg-cover border-2 ${userID.payment === true? 'border-[#A57C00]':'border-[#5F48D5]'}`} style={{backgroundImage:`URL('${userID.profileImage}')`}}></div>
+              <p className="text-[#5F48D5]">{user?.user.name || "User"}</p>
+              <div className={`w-[50px] h-[50px] bg-[#5F48D5] rounded-full flex items-center justify-center bg-cover border-2 ${user?.user.payment === true? 'border-[#A57C00]':'border-[#5F48D5]'}`} style={{backgroundImage:`URL('${user?.user.profileImage}')`}}></div>
             </div>
           </Link>
         )}
