@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function StudentsCourse() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(false);
   const [clike, setClike] = useState(null);
   if (clike == true) {
     navigate("/chats");
@@ -14,6 +14,7 @@ function StudentsCourse() {
   const handleData = (d) => {
     setData(d);
   };
+  const video = 'https://res.cloudinary.com/dfgg5fmfr/video/upload/v1766385414/whiteboard_courses/imjsjrk7p398ez8vzzwh.mp4'
   return (
     <div className="flex items-center justify-center mt-20">
       <div className="w-[85%] h-[70vh] flex justify-between">
@@ -24,7 +25,7 @@ function StudentsCourse() {
             </div> */}
             <div className="w-full h-[450px] rounded-2xl shadow-lg/20">
               <video
-                src={`${data.videoId}`}
+                src={!data? `${video}` :`${data.videoId}`}
                 className="w-full h-[450px] rounded-2xl"
                 autoPlay
                 controls
@@ -33,14 +34,14 @@ function StudentsCourse() {
             <div className="w-full h-[130px] bg-white rounded-2xl shadow-lg/20 p-3 flex flex-col gap-5">
               <div className=" flex gap-10">
                 <span className="flex gap-3 font-Inter">
-                  Tittle: <p className="font-light">{data.tittle}</p>
+                  Tittle: <p className="font-light">{!data?`Demo`:`${data.tittle}`}</p>
                 </span>
                 <span className="flex gap-3 font-Inter">
-                  EP: <p className="font-light">{data.episode}</p>
+                  EP: <p className="font-light">{!data?`--`:`${data.episode}`}</p>
                 </span>
               </div>
               <span className="flex gap-3 font-Inter">
-                Discription: <p className="font-light">{data.discription}</p>
+                Discription: <p className="font-light">{!data?`--`:`${data.discription}`}</p>
               </span>
             </div>
           </div>

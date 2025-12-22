@@ -19,7 +19,7 @@ export const addCourseVideo = async (req, res) => {
       discription: discription,
       episode: episode,
       videoId: videoFile.path, // Cloudinary Secure URL for the video
-      img: thumbnail.path, // Cloudinary Secure URL for the image
+      img: thumbnail.path,
     });
 
     await newVideo.save();
@@ -111,20 +111,55 @@ export const deltVdo = async (req, res) => {
   }
 };
 
-//select single 
+//select single
 
-export const singleVdo =async(req,res)=>{
+export const singleVdo = async (req, res) => {
   try {
-    const vdoId = req.query.videoId
-    if(!vdoId){
-      return res.status(400).json({message:"no video found"})
+    const vdoId = req.query.videoId;
+    if (!vdoId) {
+      return res.status(400).json({ message: "no video found" });
     }
-    const vedio_list = await CSvideo.findById({_id:vdoId})
-    if(!vedio_list){
-      return res.status(400).json({message:"no video is found on this id"})
+    const vedio_list = await CSvideo.findById({ _id: vdoId });
+    if (!vedio_list) {
+      return res.status(400).json({ message: "no video is found on this id" });
     }
-    res.status(200).json({message:'seleted video', video:vedio_list})
+    res.status(200).json({ message: "seleted video", video: vedio_list });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
+//data for the first user students, but the students payment is false they show in demo video
+
+export const testVideo = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById({ _id: userId });
+    const testGO = await CSvideo.find({ name: "GO" }).limit(3);
+    const textPY = await CSvideo.find({ name: "PYTHON" }).limit(3);
+    const textJA = await CSvideo.find({ name: "JAVA" }).limit(3);
+    const textJS = await CSvideo.find({ name: "JAVASCRIPT" }).limit(3);
+    const textFT = await CSvideo.find({ name: "FLUTTER" }).limit(3);
+    if (!user) {
+      return res.status(404).json({ message: "user not found" });
+    }
+    const user_payment = user.payment === "true";
+    if (user_payment) {
+      return res
+        .status(404)
+        .json({ message: "hi students please contact your mentor" });
+    }
+    return res
+      .status(200)
+      .json({
+        message: "hi student, please enjoy our trail class",
+        testGO,
+        textPY,
+        textFT,
+        textJS,
+        textJA
+      });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server issue" });
+  }
+};
